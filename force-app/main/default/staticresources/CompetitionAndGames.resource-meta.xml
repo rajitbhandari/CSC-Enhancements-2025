@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>image/png</contentType>
+    <description>This announcement is a notification for the newly released resource &quot;How to use Competition and Games in the Lifestyle Change Program&quot;.</description>
+</StaticResource>

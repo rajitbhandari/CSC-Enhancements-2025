@@ -1,0 +1,14 @@
+.THIS  #error {
+    text-align: center;
+    color:#FF0000;
+}
+.THIS #fontcolor {
+    
+}
+.THIS .buttonWidth {
+    width : 160px;
+}
+.THIS .uiInputDefaultError .form-element__help{
+    color:#FF0000 !important;
+    font-weight: bold;
+}

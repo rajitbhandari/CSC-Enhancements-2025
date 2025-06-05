@@ -1,0 +1,6 @@
+<aura:documentation>
+	<aura:description>Documentation</aura:description>
+	<aura:example name="Customlogin_CSC" ref="Customlogin_CSC" label="Label">
+		Example Description
+	</aura:example>
+	</aura:documentation>

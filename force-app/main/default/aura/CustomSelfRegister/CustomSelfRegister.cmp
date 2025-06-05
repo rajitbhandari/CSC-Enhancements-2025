@@ -1,0 +1,233 @@
+<!--
+ - Created by vPolavarapu; this componenet helps end user sign up and create a new account in community
+ -->
+<aura:component controller="LightningSelfRegisterController" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="accountId" type="String" required="false" description="accountId for creating the user. If not specified, it will create a PersonAccount if possible for B2C scenario. Or otherwise if it's in a community, the community's self-registration accountId will be used."/>
+    <aura:attribute name="regConfirmUrl" type="String" required="true" default="s/login/CheckPasswordResetEmail"/>
+    <aura:attribute name="response" type="String" required="false"/>
+    <aura:attribute name="checkSuccess" type="Boolean" required="true" description="" default="false" />
+    <aura:attribute name="startUrl" type="String" required="false" description="The url you go to after a successful login" />
+    <aura:attribute name="showError" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="isCDCRecognized" type="Boolean"  description="" default="false" access="private"/>
+    <aura:attribute name="confirmEmail" type="String" required="false"/>
+    <aura:attribute name="errorMessage" default="" type="String" required="false" description="" access="private"/>
+    <aura:attribute name="userObject" type="User" default="{'sobjectType': 'User','FirstName': '','LastName':'','Email' : '','organization_Name__c':'','ProfileValues__c':'','CDC_Recognized__c':'','Org_Code__c':'','Zip_Code__c':'' }" />
+    <aura:attribute name="firstnameLabel" type="String" required="false" default="First Name"/>
+    <aura:attribute name="lastnameLabel" type="String" required="false" default="Last Name"/>
+    <aura:attribute name="aliasLabel" type="String" required="false" default="Alias"/>
+    <aura:attribute name="emailLabel" type="String" required="false" default="Email"/>
+    <aura:attribute name="orgNameLabel" type="String" required="false" default="Organization Name"/>
+    <aura:attribute name="CDCRecognizedLabel" type="String" required="false" default="CDC Recognized"/>
+    <aura:attribute name="CDCRecognizedValue" type="Boolean" required="false" default="false"/>
+    <aura:attribute name="OrgCodeLabel" type="String" required="false" default="Org Code"/>
+    <aura:attribute name="ZipCodeLabel" type="String" required="false" default="Zip Code"/>
+    <aura:attribute name="termsAndConditions" type="Boolean" required="false" default="false"/>
+    <aura:attribute name="ProfileLabel" type="String" required="false" default="Profile"/>
+    <aura:attribute name="passwordLabel" type="String" required="false" default="Create Password"/>
+    <aura:attribute name="confirmPasswordLabel" type="String" required="false" default="Confirm Password"/>    
+    <aura:attribute name="submitButtonLabel" type="String" required="false" default="Submit"/>
+    <aura:attribute name="cancelButtonLabel" type="String" required="false" default="Cancel"/>
+    <aura:attribute name="includePasswordField" type="Boolean" required="false" default="true" description="Whether to include password"/>    
+    <aura:attribute name="extraFieldsFieldSet" type="String" required="false" description="A field set name whose fields are desired for user registration"/>
+    <aura:attribute name="extraFields" type="list" required="false" description="A field set name whose fields are desired for user registration"/>
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}"/>
+    <aura:attribute name="expid" type="String" required="false" description="The branding experience ID" />    
+    <aura:attribute name="userprofileValues" type="String[]" default="CDC-Recognized Organization, Interested and Applying Organization, Healthcare Organization,Employer and Insurer"/>
+    <aura:attribute name="referredByValues" type="String[]" />
+    <aura:attribute name="CDCRecognizedValues" type="String[]" />
+    <aura:attribute name="orgCodeObject" type="string" required="false" default=""/>
+    <aura:attribute name="orgfieldVisiblility" type="Boolean" required="false" default="false"/>
+    <aura:attribute name="errorMessageValue" type="string" default=""/>
+    <aura:attribute name="otherOrgType1" type="string" default=""/>
+    <aura:attribute name="Spinner" type="Boolean" required="false" default="false"/>
+
+    <aura:attribute name="otherOrgType" type="string" default=""/>
+    <aura:registerevent name="sitePropagatedStartUrl" type="c:setStartUrl"/>
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}"/>
+    <aura:dependency resource="c:setStartUrl" type="EVENT"/>
+    <!-- Please uncomment
+    <aura:dependency resource="siteforce:registerQueryEventMap" type="EVENT"/>
+    -->
+    <aura:handler event="c:setStartUrl" action="{!c.setStartUrl}"/> 
+    <aura:handler event="c:setExpId" action="{!c.setExpId}"/>    
+    <aura:dependency resource="c:setExpId" type="EVENT"/> 
+    <aura:handler name="change" value="{!v.orgCodeObject}" action="{!c.valueChanged}" />
+ 
+    <div>
+        <aura:renderIf isTrue="{!v.showError}">
+            <div id="error">
+                <ui:outputRichText value="{!v.errorMessage}"/>
+            </div>
+        </aura:renderIf>
+        <div id="error">
+            <ui:outputRichText value="{!v.errorMessageValue}"/>
+        </div>
+        <aura:if isTrue="{!v.Spinner}">
+            <lightning:spinner alternativeText="Loading" size="large" />
+       </aura:if>
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" >
+                <b id="fontcolor"> <abbr class="slds-required" title="required">*</abbr> {!v.firstnameLabel}</b></label> 
+            <div class="slds-form-element__control">
+                <ui:inputText value="{!v.userObject.FirstName}"  maxlength="30" required="true" aura:id="firstname" class="slds-input input" keyup="{!c.onKeyUp}"/>
+            </div>
+        </div> 
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"> <abbr class="slds-required" title="required">*</abbr> {!v.lastnameLabel}</b></label> 
+            <div class="slds-form-element__control">
+                <ui:inputText value="{!v.userObject.LastName}" maxlength="40"  required="" aura:id="lastname" class="slds-input"  keyup="{!c.onKeyUp}"/>
+            </div>
+        </div>
+        
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr>{!v.emailLabel}</b></label> 
+            <div class="slds-form-element__control">
+                <ui:inputText value="{!v.userObject.Email}" required=""  maxlength="60" aura:id="email" class="slds-input"  keyup="{!c.onKeyUp}" blur="{!c.validateEmail}"/>
+            </div>
+        </div>
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" >
+                <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr>Confirm Email</b></label>
+            <div class="slds-form-element__control">
+                <ui:inputText value="{!v.confirmEmail}" required=""  maxlength="60" aura:id="Cemail" class="slds-input" placeholder="" blur="{!c.validateConEmail}"/>
+            </div>
+        </div>
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr> {!v.orgNameLabel}</b></label> 
+            <div class="slds-form-element__control">
+                <c:LookupSObject sObjectAPIName="Account" instanceId="account"  pluralLabel="Accounts" searchString="{!v.userObject.CompanyName}" orgCodeObject="{!v.orgCodeObject}" errorMessageValue="{!v.errorMessageValue}" />
+            </div>
+        </div>
+        
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"> How did you learn about the CSC?</b></label> 
+            <ui:inputSelect aura:id="userReferredBY" value="{!v.userObject.User_Referred_to_CSC_by__c}" keyup="{!c.onKeyUp}"  class="slds-input" >
+                <aura:iteration items="{!v.referredByValues}" var="level">
+                    <ui:inputSelectOption text="{!level}" label="{!level}"/>
+                </aura:iteration>
+            </ui:inputSelect> 
+        </div>
+        <aura:if isTrue="{!v.userObject.User_Referred_to_CSC_by__c=='Other'}">      
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="text-input-id-1">
+                    <b id="fontcolor"> <abbr class="slds-required" title="required">*</abbr>Please Specify how you learned about the CSC</b></label>
+                <div class="slds-form-element__control">
+                    <ui:inputText value="{!v.userObject.User_Referred_to_CSC_Specified__c}" required=""  maxlength="60" aura:id="SpecifyOther1" class="slds-input"  keyup="{!c.onKeyUp}" />
+                </div>
+            </div>
+        </aura:if>        
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"> Organization Type</b></label> 
+            <ui:inputSelect aura:id="userProfileId" value="{!v.userObject.CDC_User_Profile_Type__c}" change="{!c.OtherOrgType}"  keyup="{!c.onKeyUp}" disabled="{!v.orgfieldVisiblility}" class="slds-input" >
+                <aura:iteration items="{!v.userprofileValues}" var="level">
+                    <ui:inputSelectOption text="{!level}" label="{!level}"/>
+                </aura:iteration>
+            </ui:inputSelect>
+        </div>
+        <aura:if isTrue="{!v.userObject.CDC_User_Profile_Type__c=='Other'}">      
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="text-input-id-1">
+                    <b id="fontcolor"> <abbr class="slds-required" title="required">*</abbr>Please Specify if Organization Type is Other</b></label>
+                <div class="slds-form-element__control">
+                    <ui:inputText value="{!v.otherOrgType}" required=""  maxlength="60" aura:id="SpecifyOther" class="slds-input"  keyup="{!c.onKeyUp}" />
+                </div>
+            </div>
+        </aura:if>
+
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"> Is your organization CDC recognized (i.e., Pending, Preliminary, or Full)?</b></label> 
+            <ui:inputSelect aura:id="cdcRecognizedValue" value="{!v.userObject.CDC_Recognized_org__c}" change="{!c.CheckCDCRecognized}" keyup="{!c.onKeyUp}" disabled="{!v.orgfieldVisiblility}" class="slds-input" >
+                <aura:iteration items="{!v.CDCRecognizedValues}" var="level">
+                    <ui:inputSelectOption text="{!level}" label="{!level}"/>
+                </aura:iteration>
+            </ui:inputSelect>
+        </div>
+        <!--
+        <div class="slds-form-element">
+           <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"> CDC Recognized</b></label> 
+            <div class="slds-form-element__control">
+                <b id="fontcolor"> 
+                    <lightning:input aura:id="isCDCRec" variant="label-hidden" type="checkbox" onchange="{!c.CheckIfCDCRecognized}"  disabled="{!v.orgfieldVisiblility}"  label="{!v.CDCRecognizedLabel}"  name="{!v.CDCRecognizedLabel}" checked="{!v.userObject.CDC_Recognized__c}"  />
+                </b>
+            </div>
+        </div>
+        -->
+        
+        
+        <aura:if isTrue="{!v.isCDCRecognized}">      
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="text-input-id-1">
+                    <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr>{!v.OrgCodeLabel}</b></label> 
+                <aura:if isTrue="{!v.orgfieldVisiblility}"> 
+                    <div class="slds-form-element__control">
+                        <ui:inputSecret maxlength="7" value="{!v.userObject.Org_Code__c}" required="" aura:id="OrgCode" class="slds-input" disabled="{!v.orgfieldVisiblility}" keyup="{!c.onKeyUp}"/>
+                    </div>
+                    <aura:set attribute="else">
+                        <div class="slds-form-element__control">
+                            <ui:inputText maxlength="7" value="{!v.userObject.Org_Code__c}" required="" aura:id="OrgCode" class="slds-input" disabled="{!v.orgfieldVisiblility}" keyup="{!c.onKeyUp}"/>
+                        </div>
+                    </aura:set>
+                </aura:if>
+            </div> 
+        </aura:if>
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr> {!v.ZipCodeLabel}</b></label> 
+            <div class="slds-form-element__control">
+                <ui:inputText maxlength="5" value="{!v.userObject.Zip_Code__c}" disabled="{!v.orgfieldVisiblility}"  required="" aura:id="ZipCode" class="slds-input"  keyup="{!c.onKeyUp}"/>
+            </div>
+        </div>
+        <lightning:input type="checkbox" 
+        label="Check the box to sign-up for our Mailing List to get access to new resources, program updates, and more from the National Diabetes Prevention Program" 
+        name="inputcheckbox"
+        onchange="{!c.onCheck}"
+        aura:id="termscheckbox"/>
+
+        <aura:iteration aura:id="extraFields" items="{!v.extraFields}" var="curField" indexVar="index">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="text-input-id-1">
+                    <b id="fontcolor">{!curField.label}</b></label>
+                <div class="slds-form-element__control">
+                    <ui:inputText value="{!curField.value}" aura:id="{!curField.fieldPath}" placeholder="{!curField.label}" keyup="{!c.onKeyUp}" class="slds-input"/>
+                </div>
+            </div>
+        </aura:iteration>
+        <aura:renderIf isTrue="{!v.includePasswordField}"> 
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="text-input-id-1">
+                    <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr> {!v.passwordLabel}</b></label>
+                <div class="slds-form-element__control">
+                    <ui:inputSecret value="" aura:id="password" placeholder="{!v.passwordLabel}" keyup="{!c.onKeyUp}" class="slds-input"/>
+                </div>
+            </div> 
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="text-input-id-1">
+                    <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr> {!v.confirmPasswordLabel}</b></label>
+                <div class="slds-form-element__control">
+                    <ui:inputSecret value="" aura:id="confirmPassword" placeholder="{!v.confirmPasswordLabel}" keyup="{!c.onKeyUp}" class="slds-input"/>
+                </div>
+            </div>
+        </aura:renderIf>
+        <br/>
+        
+        <div class="c-container">
+            <lightning:layout horizontalAlign="space">
+                <lightning:layoutItem flexibility="auto" padding="around-large">
+                    <lightning:button variant="brand" class="buttonWidth" label="{!v.submitButtonLabel}" onclick="{!c.handleSelfRegister}" />
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem flexibility="auto" padding="around-large">
+                    <lightning:button variant="brand" class="buttonWidth" label="{!v.cancelButtonLabel}"  onclick="{!c.redirectToHome}" />
+                </lightning:layoutItem>
+            </lightning:layout>
+        </div>
+        
+    </div>
+</aura:component>

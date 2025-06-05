@@ -1,0 +1,132 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+	<!-- <ltng:require styles="{!$Resource.WebsiteFooterCSS}" /> -->
+    
+    <head>
+    </head> 
+    <!--id="datestamp"-->
+<div class="row" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+					<div class="span24">
+<ul>
+	<!-- <li class="last-reviewed">Page last reviewed: <span itemprop="lastReviewed">June 22, 2017</span></li>	
+    
+    <li class="last-updated">Page last updated: <span itemprop="dateModified">June 22, 2017</span></li>						
+    -->
+    <li class="content-source">Content source:
+		<ul>
+			<li itemprop="sourceOrganization" itemscope="itemscope" itemtype="http://schema.org/Organization"><a href="http://www.cdc.gov/" itemprop="url" target="_blank">Centers for Disease Control and Prevention</a></li>
+		</ul>
+	</li>
+    
+	<li class="content-source">Maintained By:
+		<ul>
+			<li><a href="https://www.cdc.gov/chronicdisease/index.htm" target="_blank">National Center for Chronic Disease Prevention and Health Promotion</a>, <a href="https://www.cdc.gov/diabetes" target="_blank">Division of Diabetes Translation</a></li>
+            
+        </ul>
+	</li>	
+    
+</ul>
+										</div>
+								</div>
+ <!-- include eng footerSubSocialMedia.html -->
+<div id="footer">
+<div class="cdcSlimFooter">
+<div class="socialMedia">
+	<div class="container">
+		<nav class="followcdc">
+			<ul>
+				<li><a href="https://www.cdc.gov/Other/emailupdates"><img id="theImage" src="{!$Resource.Email}"/><span class="tp-sr-only">Email</span></a></li>
+				<li><a href="https://www.facebook.com/CDC" target="_blank"><img id="theImage" src="{!$Resource.Facebook}"/><span class="tp-sr-only">Recommend</span></a></li>
+				<li><a href="https://twitter.com/CDCgov" target="_blank"><img id="theImage" src="{!$Resource.Twitter}"/><span class="tp-sr-only">Tweet</span></a></li>
+				<li><a href="https://www.youtube.com/user/CDCstreamingHealth" target="_blank"><img id="theImage" src="{!$Resource.Youtube}"/><span class="tp-sr-only">YouTube</span></a></li>
+				<li><a href="https://www.instagram.com/CDCgov/" target="_blank"><img id="theImage" src="{!$Resource.Instagram}"/><span class="tp-sr-only">Instagram</span></a></li>
+				<li><a href="https://www2c.cdc.gov/podcasts"><img id="theImage" src="{!$Resource.Headphones}"/><span class="tp-sr-only">Listen</span></a></li>
+				<li><a href="https://www.cdc.gov/cdctv"><img id="theImage" src="{!$Resource.CDC}"/><span class="tp-sr-only">Watch</span></a></li>
+				<li><a href="https://www2c.cdc.gov/podcasts/rss.asp"><img id="theImage" src="{!$Resource.RSS}"/><span class="tp-sr-only">RSS</span></a></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</div>
+ <!-- /include eng footerSubSocialMedia.html -->
+
+	<div class="container">
+		<div class="cdcLinks">
+			<div class="container">
+				<ul>
+
+<!-- include eng footerSubCdcLinks.html-->
+<li>
+	<nav>
+		<h6 class="hidden-four hidden-three">ABOUT <span class="icon-plus visible-one pull-right"></span></h6>
+		<ul class="hidden-one">
+			<li><a href="https://www.cdc.gov/about/default.htm" target="_blank">About CDC</a></li>
+			<li><a href="https://jobs.cdc.gov" target="_blank">Jobs</a></li>
+			<li><a href="https://www.cdc.gov/funding" target="_blank">Funding</a></li>
+		</ul>
+	</nav>
+</li>
+<li>
+	<nav>
+		<h6 class="hidden-four hidden-three">LEGAL <span class="icon-plus visible-one pull-right"></span></h6>
+		<ul class="hidden-one">
+			<li><a href="https://www.cdc.gov/Other/policies.html" target="_blank">Policies</a></li>
+			<li><a href="https://www.cdc.gov/Other/privacy.html" target="_blank">Privacy</a></li>
+			<li><a href="https://www.cdc.gov/od/foia" target="_blank">FOIA</a></li>
+			<li><a href="https://www.cdc.gov/eeo/nofearact/index.htm" target="_blank">No Fear Act</a></li>
+			<li><a href="https://oig.hhs.gov" class="no-link" target="_blank">OIG</a></li>
+		</ul>
+	</nav>
+</li>
+<!--/ include eng footerSubCdcLinks.html-->
+
+				</ul>
+			</div>
+</div>
+		<div class="cdcContact">
+			<div class="container">
+				<ul>
+					<li class="local-contact">
+
+ <!-- include eng footerSubGlobalContact1.html -->
+<section>
+	<address class="address" itemscope="itemscope" itemtype="https://schema.org/Organization">
+		<span class="value" itemprop="address" itemscope="itemscope" itemtype="https://schema.org/PostalAddress">
+			<span itemprop="streetAddress">1600 Clifton Road Atlanta GA 30329-4027 USA</span>
+		</span>
+        
+        <span class="right-link" itemprop="contactPoint" itemscope="itemscope" itemtype="https://schema.org/ContactPoint">
+            <span class="right" itemprop="url"><a href="https://www.hhs.gov" class="right" target="_blank">U.S. Department of Health And Human Services</a></span>
+		</span>
+       
+        <br />
+        
+		<span class="value" itemprop="telephone">800-CDC-INFO (800-232-4636)</span>,
+		<span class="value" itemprop="telephone">TTY: 888-232-6348</span>
+        
+        <span class="value" itemprop="contactPoint" itemscope="itemscope" itemtype="https://schema.org/ContactPoint">
+        	<span class="right" itemprop="url"><a href="https://www.hhs.gov/open" class="right" target="_blank">HHS/Open</a></span>
+        </span>
+        
+        
+        <br />
+        
+		<span class="value" itemprop="contactPoint" itemscope="itemscope" itemtype="https://schema.org/ContactPoint">
+			<span itemprop="url"><a href="https://wwwn.cdc.gov/dcs/RequestForm.aspx" class="bluelink" target="_blank">Email CDC-INFO</a></span>
+		</span>
+        
+        <span class="value" itemprop="contactPoint" itemscope="itemscope" itemtype="https://schema.org/ContactPoint">
+			<span class="right" itemprop="url"><a href="https://www.usa.gov/" class="right" target="_blank">USA.gov</a></span>
+		</span>
+        
+	</address>
+</section>
+ <!-- /include eng footerSubGlobalContact1.html -->
+
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+</aura:component>

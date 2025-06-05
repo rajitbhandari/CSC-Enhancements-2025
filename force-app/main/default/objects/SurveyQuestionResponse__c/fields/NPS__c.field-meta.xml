@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NPS__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Response_Picklist_for_Reporting__c, 
+&quot;1&quot;, -1,
+&quot;2&quot;, -1,
+&quot;3&quot;, -1,
+&quot;4&quot;, 0,
+&quot;5&quot;, 1,
+NULL)</formula>
+    <label>NPS</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

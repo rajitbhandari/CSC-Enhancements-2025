@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>General</fullName>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>Question__c</columns>
+    <columns>OrderNumber__c</columns>
+    <columns>Survey__c</columns>
+    <columns>Choices__c</columns>
+    <columns>Need_Ordered_Picklist_for_Reporting__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Survey__c</field>
+        <operation>equals</operation>
+        <value>General Feedback</value>
+    </filters>
+    <label>General Feedback</label>
+</ListView>

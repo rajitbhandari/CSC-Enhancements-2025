@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Distribution_List__c</fullName>
+    <externalId>false</externalId>
+    <label>Distribution List</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Full (only select this if sending to all)</fullName>
+                <default>false</default>
+                <label>Full (only select this if sending to all)</label>
+            </value>
+            <value>
+                <fullName>DPRP</fullName>
+                <default>false</default>
+                <label>DPRP</label>
+            </value>
+            <value>
+                <fullName>AMP</fullName>
+                <default>false</default>
+                <label>AMP</label>
+            </value>
+            <value>
+                <fullName>DREM</fullName>
+                <default>false</default>
+                <label>DREM</label>
+            </value>
+            <value>
+                <fullName>Training Entities</fullName>
+                <default>false</default>
+                <label>Training Entities</label>
+            </value>
+            <value>
+                <fullName>1901 Islands</fullName>
+                <default>false</default>
+                <label>1901 Islands</label>
+            </value>
+            <value>
+                <fullName>Tribal</fullName>
+                <default>false</default>
+                <label>Tribal</label>
+            </value>
+            <value>
+                <fullName>1705</fullName>
+                <default>false</default>
+                <label>1705</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>8</visibleLines>
+</CustomField>

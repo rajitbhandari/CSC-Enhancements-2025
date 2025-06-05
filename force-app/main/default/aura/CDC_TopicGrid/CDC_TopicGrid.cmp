@@ -1,0 +1,27 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="CDC_TopicsGridController">
+    <aura:attribute type="object" name="Topics" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:layout multipleRows="true" >
+        <aura:iteration items="{!v.Topics}" var="Topic" >
+            <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="4" class="border">                
+                <a href="{!Topic.TopicURL}">
+                    <div class="container">
+                        <section class="cms-boxes">
+                            <div class="cms-boxes-outer">
+                                <div class="cms-boxes-items cms-features">
+                                    <div class="boxes-align">
+                                       <div class="img_container forceTopicFeaturedTopicItem topicImage">
+  <img class="cover-image" src="{!Topic.TopicImage}" alt="csc" />
+  <h2> {!Topic.TopicName} </h2>
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    
+                </a>
+            </lightning:layoutItem>
+        </aura:iteration>
+    </lightning:layout>
+</aura:component>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Receiving_and_Maintaining_CDC_Recognitio</fullName>
+    <active>true</active>
+    <label>Receiving_and_Maintaining_CDC_Recognitio</label>
+    <picklistValues>
+        <picklist>Linked_Topics__c</picklist>
+        <values>
+            <fullName>Covering the National DPP as an Insurance%2FWellness Benefit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data Reporting for the Lifestyle Change Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivering The Lifestyle Change Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Learning About The National DPP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lifestyle Coach Training And Practice</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing and Recruitment for the National DPP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prediabetes Screening%2C Testing and Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Receiving and Maintaining CDC Recognition</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

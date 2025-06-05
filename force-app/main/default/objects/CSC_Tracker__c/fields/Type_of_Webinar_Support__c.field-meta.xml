@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_of_Webinar_Support__c</fullName>
+    <description>Type of CSC support, based on the Webinar Request and Support SOP</description>
+    <externalId>false</externalId>
+    <label>Type of Webinar Support</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pre-recorded Support (Posting Completed Video)</fullName>
+                <default>false</default>
+                <label>Pre-recorded Support (Posting Completed Video)</label>
+            </value>
+            <value>
+                <fullName>Pre-recorded Support (Video Clearance to Posting)</fullName>
+                <default>false</default>
+                <label>Pre-recorded Support (Video Clearance to Posting)</label>
+            </value>
+            <value>
+                <fullName>Pre-recorded Support (eClearance to Posting)</fullName>
+                <default>false</default>
+                <label>Pre-recorded Support (eClearance to Posting)</label>
+            </value>
+            <value>
+                <fullName>Live, Real-Time Support (Co-hosting to Posting)</fullName>
+                <default>false</default>
+                <label>Live, Real-Time Support (Co-hosting to Posting)</label>
+            </value>
+            <value>
+                <fullName>Standalone Support (Recording to Posting)</fullName>
+                <default>false</default>
+                <label>Standalone Support (Recording to Posting)</label>
+            </value>
+            <value>
+                <fullName>Live, Real-Time Support (Full Support)</fullName>
+                <default>false</default>
+                <label>Live, Real-Time Support (Full Support)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

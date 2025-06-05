@@ -1,0 +1,337 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="certHeaderUser">
+    
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
+    <aura:attribute name="cscPath" type="String" default=""/>
+    <aura:attribute name="userInfo" type="user"/> 
+    <aura:attribute name="hiddenClass" type="String" default=""/>
+    <aura:attribute name="showFocus" type="String" default="1"/>
+
+    <aura:attribute name="accordian" type="Boolean" default="false"/>
+    <aura:attribute name="openProfile" type="Boolean" default="false"/>
+    
+    <aura:attribute name="hamburger" type="Boolean" default="false"/>
+    <aura:attribute name="mobile1" type="Boolean" default="false"/>
+    <aura:attribute name="mobile2" type="Boolean" default="false"/>
+    <aura:attribute name="mobile3" type="Boolean" default="false"/>
+    <aura:attribute name="mobile4" type="Boolean" default="false"/>
+    <aura:attribute name="mobile5" type="Boolean" default="false"/>
+    <aura:attribute name="mobile6" type="Boolean" default="false"/>
+
+    <aura:attribute name="myProfile" type="Boolean" default="false"/>
+    <aura:attribute name="loginChk" type="Boolean" default="false"/>
+    <aura:attribute name="currentUser" type="User"/>
+    
+    <force:recordData aura:id="recordLoader" recordId="{!$SObjectType.CurrentUser.Id}"  
+                      fields="Id,FirstName,LastName" targetFields="{!v.currentUser}"/>
+
+    
+    <!-- <lightning:messageChannel type="ICPD_Return_to_Top__c" onMessage="{!c.handleReturnToTop}" scope="APPLICATION" />
+    
+
+    <lightning:messageChannel type="ICPD_Hide_Template__c" onMessage="{!c.handleMessage}" scope="APPLICATION" /> -->
+    <div class="{!v.hiddenClass}">
+  
+        <div class="slds-show_medium community-banner fontStyle" style="background-color: rgb(0, 105, 92);">
+            <div class="community-banner-inner inner-content" style="padding-top: 10px; padding-bottom: 10px;">
+                <div class="Community-logo" style="display: inline; vertical-align: middle;" role="img" aria-label="Welcome">
+                    <a>
+                        <img alt="National Diabetes Prevention Program" src= "/resource/1660224352000/NationalDPPLogo" style="width: 90px; height: auto;"/>
+                    </a>                                                                                                                        
+                </div>
+                <div class="user-actions" style="display: inline; float: right;">
+                    <div class="user-name" style=" vertical-align: middle;">
+                        <aura:if isTrue="{!v.currentUser.FirstName == null}">
+                            
+                            <div class = "slds-align_absolute-center">
+                                <a href="{!v.cscPath +'/s/login/'}" aria-label="Login" style="color: white; display:inline-block; padding-top:5px"> 
+                                    <span class="copy" style = "padding-bottom:0 !important">Login</span> </a>
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.currentUser.FirstName != null}">
+                            <div class="user-menu" style="display: inline-block; vertical-align: middle;cursor: pointer;">
+                                <div class="profile hoverColor" aura:id="prof" style="vertical-align: middle;">                                                                   
+                                    <ul >                                            
+                                        <li>
+                                            <a class="copy bCLR pointEvent" aria-label="Name" style = "padding:0 !important" 
+                                            href="#">{!v.currentUser.FirstName}&nbsp;{!v.currentUser.LastName}&nbsp;<lightning:icon tabindex="-1" iconName="action:user" size="small" onclick="{!c.openProfile}"/></a>
+                                            <ul class="dropdown">
+                                                <li>
+                                                    <a href="{!v.cscPath +'/s/'}" aria-label="Home" role="menuitem" tabindex="0">Home</a>
+                                                </li>
+                                                <li>
+                                                    <a class="refresh_link"  aria-label="Home" href="{!v.cscPath +'/s/profile/' + v.currentUser.Id}" role="menuitem" tabindex="0">My Profile</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{!v.cscPath +'/s/settings/' + v.currentUser.Id}" role="menuitem" tabindex="0">My Settings</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{!v.cscPath +'/s/contactsupport/'}" role="menuitem" tabindex="0">Contact Support</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{!v.cscPath +'/secur/logout.jsp?retUrl='}" role="menuitem" tabindex="0">Logout</a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </li> 
+                                    </ul>
+                                </div>
+                            </div>
+                        </aura:if>
+                    </div> 
+                </div>
+            </div>
+        </div> 
+        
+        <!-- Bottom Blue Part -->
+        <div class="desktopHeader3 fontStyle" style="background-color: rgb(255,255,255);">
+            <div class="desktopHeader4 inner-content-menu">
+                <div>
+                    <nav role="navigation">
+                        <ul class="menuUL">
+                            <li class="textHover">
+                                <a href="{!v.cscPath +'/s/'}" class="menu-item">Home</a>
+                            </li>
+                            <li class="textHover">
+                                <a href="{!v.cscPath +'/s/about-the-customer-service-center'}" class="menu-item">About Us</a>
+                            </li>
+                            <li class="textHover">
+                                <a href="{!v.cscPath +'/s/topic/0TOt0000000H3w3GAC/frequently-asked-questions-faqs'}" class="menu-item">FAQS</a>
+                            </li>
+                            <li class="hoverColor">
+                                <a class="pointEvent"  style="background-color: white; padding: 0px 25px;" href="#">Resource Topics &#9662;</a>
+                                <ul class="dropdown">   
+                                    <li><a href="{!v.cscPath +'/s/topic/0TO3d0000000WebGAE/health-equity-resources'}" class="menu-item-large">Health Equity Resources</a></li>                       
+                                    <li><a href="{!v.cscPath +'/s/topic/0TOt000000001QaGAI/learning-about-the-national-dpp'}" class="menu-item-large">Learning About The National DPP</a></li>
+                                    <li><a href="{!v.cscPath +'/s/topic/0TOt000000001QbGAI/receiving-and-maintaining-cdc-recognition'}" class="menu-item-large">Receiving And Maintaining CDC Recognition</a></li>
+                                    <li><a href="{!v.cscPath +'/s/topic/0TOt000000001QZGAY/delivering-the-lifestyle-change-program'}" class="menu-item-large">Delivering The Lifestyle Change Program</a></li>
+                                    <li><a href="{!v.cscPath +'/s/topic/0TOt000000001QcGAI/marketing-and-recruitment-for-the-national-dpp'}" class="menu-item-large">Marketing And Recruitment For The National DPP</a></li>
+                                    <li><a href="{!v.cscPath +'/s/topic/0TOt0000000GwhGGAS/lifestyle-coach-resources'}" class="menu-item-large">Lifestyle Coach Resources</a></li>
+                                    <li><a href="{!v.cscPath +'/s/topic/0TOt0000000GwhLGAS/data-reporting-for-the-lifestyle-change-program'}" class="menu-item-large">Data Reporting For The Lifestyle Change Program</a></li>
+                                    <li><a href="{!v.cscPath +'/s/topic/0TOt000000001QdGAI/prediabetes-screening-testing-and-referral'}" class="menu-item-large">Prediabetes Screening Testing And Referral</a></li>
+                                    <li><a href="{!v.cscPath +'/s/topic/0TOt000000001QYGAY/covering-the-national-dpp-as-an-insurancewellness-benefit'}" class="menu-item-large">Covering The National DPP As An Insurancewellness Benefit</a></li>
+                                    <li><a href="{!v.cscPath +'/s/topiccatalog'}" class="menu-item-large">More Topics...</a></li>
+                                </ul>
+                            </li>
+        
+                            <li class="hoverColor">
+                                <a class="pointEvent" style="background-color: white;" href="#">Contact Us &#9662;</a>
+                                <ul class="dropdown">                            
+                                    <li><a href="{!v.cscPath +'/s/contactsupport'}" class="menu-item-large">Contact Support</a></li>
+                                    <li><a href="{!v.cscPath +'/s/general-survey'}" class="menu-item-large">Submit General Feedback</a></li>
+                                </ul>
+                            </li>
+                            <!--
+                            <li class="textHover">
+                                <a href="{!v.cscPath +'/s/discussion-board'}" class="menu-item">Community Discussion Board</a>
+                            </li>
+							-->
+                            <li class="textHover">
+                                <a href="{!v.cscPath +'/s/events-calendar'}" class="menu-item">Calendar</a>
+                            </li>
+                            <aura:if isTrue="{!v.currentUser.FirstName != null}">
+                            <li class="hoverColor">
+                                <a class="pointEvent" style="background-color: white;" href="#">More &#9662;</a>
+                                <ul class="dropdown">                          
+                                    <li><a href="{!v.cscPath +'/s/case/Case/00Bt00000015uwAEAQ'}" class="menu-item-large">My Requests</a></li>
+                                    <li><a href="{!v.cscPath +'/s/submit-success-story'}" class="menu-item-large">Submit Success Story</a></li>
+                                    <li><a href="{!v.cscPath +'/s/newsletter'}" class="menu-item-large">Newsletter</a></li>
+                                </ul>
+                            </li>
+                        </aura:if>
+            
+                        </ul>
+                    </nav>
+                </div> 
+            </div>
+        </div>
+
+        <!-- Small device(Mobile/Tablet) View -->  
+        <div class="mobile1"> 
+            <div class="mobile2">
+                <div class="slds-hide_large slds-grid">
+                    <div class="slds-col slds-col_bump-right" style="background-color: rgb(0, 105, 92) padding: 10px;
+                                                                    width:100%" title="My Dashboard" aria-label="My Dashboad" role="button">
+                        <a href="">
+                            <img alt= "National Diabetes Prevention Program Mobile" src="/resource/1631826923000/NationalDPPLogo" style="height:40px"/>-->
+                        </a>
+                    </div>
+                    <aura:if isTrue="{!v.hamburger == false}">
+                        <div class="slds-col hamburger-container" onclick="{!c.openHamburger}" tabindex = "0">
+                            <div class="hamburger"></div>
+                            <div class="hamburger"></div>
+                            <div class="hamburger"></div>
+                        </div>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.hamburger}">
+                        <div class="slds-col hamburger-container slds-align_absolute-center close-icon" onclick="{!c.closeHamburger}">
+                            <lightning:icon iconName="utility:close" size="medium" class="iconSize" alternativeText="Utility image" title="Image" /> 
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+        </div> 
+        <div class="mobile1"> 
+            <div class="mobile2">
+                <aura:if isTrue="{!v.hamburger}">
+                    <div class="outerClass">
+                        <div class="slds-grid slds-grid_vertical" style="background-color:rgb(0, 105, 92) ; color: white;"> 
+                            <aura:if isTrue="{!v.currentUser.FirstName == null}">
+                                <div class="slds-col" style="padding: 5px;cursor: pointer;">  
+                                    <a href="{!v.cscPath +'/s/login/'}" style="color: white; display:inline-block;"> 
+                                        <span class="copy">Login</span> </a>
+                                </div>
+                            </aura:if>
+                            <aura:if isTrue="{!v.currentUser.FirstName != null}">                            
+                                <div class="slds-col" style="padding: 5px;cursor: pointer;"> 
+                                    <aura:if isTrue="{!v.myProfile == false}">
+                                        <div onclick="{!c.mobProfile1}">
+                                            <span style="color: black;" class="copy" > {!v.currentUser.FirstName}&nbsp;{!v.currentUser.LastName}&nbsp; </span>
+                                            <span style="float: right; color: white; padding-right: 12px">
+                                                <lightning:buttonIcon iconName="utility:chevrondown" variant="bare" alternativeText="Open accordian" title="Open accordian button" />
+                                            </span>
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.myProfile}">
+                                        <div onclick="{!c.cmobProfile1}">
+                                            <span style="color: black;" class="copy" > {!v.currentUser.FirstName}&nbsp;{!v.currentUser.LastName}&nbsp; </span>
+                                            <span style="float: right; color: white; padding-right: 12px">
+                                                <lightning:buttonIcon iconName="utility:chevronup" variant="bare" alternativeText="Open accordian" title="Open accordian button" />
+                                            </span>
+                                        </div>
+                                    </aura:if>
+                                </div>
+                            </aura:if>
+                            <aura:if isTrue="{!v.myProfile}">                    
+                                <div class="slds-col" style="background-color: rgb(0,105,92);">                        
+                                    <ul><a href="{!v.cscPath +'/s/'}" style="color: white; padding:10px">Home</a></ul>
+                                    <ul><a href="{!v.cscPath +'/s/profile/' + v.currentUser.Id}" style="color: white; padding:10px">My Profile</a></ul>
+                                    <ul><a href="{!v.cscPath +'/s/settings/' + v.currentUser.Id}" style="color: white; padding:10px">My Settings</a></ul>
+                                    <ul><a href="{!v.cscPath +'/s/contactsupport/'}" style="color: white; padding:10px">Contact Support</a></ul>
+                                    <ul><a href="{!v.cscPath +'/secur/logout.jsp?retUrl='}" style="color: white; padding:10px">Logout</a></ul>
+                                </div>
+
+                            </aura:if>
+                            <div class="slds-col" style="padding: 5px;cursor: pointer;">
+                                <a href="{!v.cscPath +'/s/'}" style="color: black; display:inline-block;">
+                                    <span class = "copy"> Home </span>
+                                </a>
+                            </div>
+                            <div class="slds-col" style="padding: 5px;cursor: pointer;">
+                                <a href="{!v.cscPath +'/s/about-the-customer-service-center'}" style="color: black; display:inline-block;">
+                                    <span class = "copy"> About Us </span>
+                                </a>
+                            </div>  
+                            <div class="slds-col" style="padding: 5px;cursor: pointer;">
+                                <a href="{!v.cscPath +'/s/topic/0TOt0000000H3w3GAC/frequently-asked-questions-faqs'}" style="color: black; display:inline-block;">
+                                    <span class = "copy">FAQS</span>
+                                </a>
+                            </div>   
+                            <div>
+                                <div class="slds-col" style="padding: 5px;cursor: pointer;">
+                                    <aura:if isTrue="{!v.mobile4 == false}">
+                                        <div onclick="{!c.mob4}">
+                                            <span style="color: black;" class="copy"> Resource Topics </span>
+                                            <span class="mobile-chevron">
+                                                <lightning:buttonIcon iconName="utility:chevrondown" variant="bare" onclick="{!c.mob2}" alternativeText="Open accordian" title="Open accordian button" />
+                                            </span>
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.mobile4}">
+                                        <div onclick="{!c.Cmob4}">
+                                            <span style="color: black;" class="copy"> Resource Topics </span>
+                                            <span class="mobile-chevron">                                
+                                                <lightning:buttonIcon iconName="utility:chevronup" variant="bare" onclick="{!c.Cmob2}" alternativeText="Open accordian" title="Open accordian button" />
+                                            </span>
+                                        </div>
+                                    </aura:if>
+                                </div>
+                                <aura:if isTrue="{!v.mobile4}">                    
+                                    <div class="slds-col" style="background-color: rgb(0,105,92)">
+                                        <ul><a href="{!v.cscPath +'/s/topic/0TOt000000001QaGAI/learning-about-the-national-dpp'}" style="color: white; padding:10px">Learning About The National DPP</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/topic/0TOt000000001QbGAI/receiving-and-maintaining-cdc-recognition'}" style="color: white; padding:10px">Receiving And Maintaining CDC Recognition</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/topic/0TOt000000001QZGAY/delivering-the-lifestyle-change-program'}" class="mobile-menu-item">Delivering The Lifestyle Change Program</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/topic/0TOt000000001QcGAI/marketing-and-recruitment-for-the-national-dpp'}" style="color: white; padding:10px">Marketing And Recruitment For The National DPP</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/topic/0TOt0000000GwhGGAS/lifestyle-coach-resources'}" class="menu-item-large" style="color: white; padding:10px">Lifestyle Coach Resources</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/topic/0TOt0000000GwhLGAS/data-reporting-for-the-lifestyle-change-program'}" class="mobile-menu-item">Data Reporting For The Lifestyle Change Program</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/topic/0TOt000000001QdGAI/prediabetes-screening-testing-and-referral'}" class="mobile-menu-item">Prediabetes Screening Testing And Referral</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/topic/0TOt000000001QYGAY/covering-the-national-dpp-as-an-insurancewellness-benefit'}" class="mobile-menu-item">Covering The National DPP As An Insurancewellness Benefit</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/topiccatalog'}" class="mobile-menu-item">More Topics...</a></ul>
+                                    </div>
+                                </aura:if>
+                            </div>
+                            <!-- CERT -->
+                            <div>
+                                <div class="slds-col" style="padding: 5px;cursor: pointer;">                   
+                                    <aura:if isTrue="{!v.mobile5 == false}">
+                                        <div onclick="{!c.mob5}">
+                                            <span style="color: black;" class="copy"> Contact Us </span>
+                                            <span class="mobile-chevron">
+                                                <lightning:buttonIcon iconName="utility:chevrondown" variant="bare" onclick="{!c.mob3}" alternativeText="Open accordian" title="Open accordian button" />
+                                            </span>
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.mobile5}">
+                                        <div onclick="{!c.Cmob5}">
+                                            <span style="color: black;" class="copy"> Contact Us </span>
+                                            <span class="mobile-chevron">
+                                                <lightning:buttonIcon iconName="utility:chevronup" variant="bare" onclick="{!c.Cmob3}" alternativeText="Open accordian" title="Open accordian button" />
+                                            </span>
+                                        </div>
+                                    </aura:if>
+                                </div>
+                                <aura:if isTrue="{!v.mobile5}">                    
+                                    <div class="slds-col" style="background-color: rgb(0,105,92);">                   
+                                        <ul><a href="{!v.cscPath +'/s/contactsupport'}" class="mobile-menu-item">Contact Support</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/general-survey'}" class="mobile-menu-item">Submit General Feedback</a></ul>  
+                                    </div>
+                                </aura:if>
+                            </div>
+                            <!-- More Resources -->
+                            <div class="slds-col" style="padding: 5px;cursor: pointer;">
+                                <a href="{!v.cscPath +'/s/events-calendar'}"  style="color: black; display:inline-block;">
+                                    <span class = "copy"> Calendar </span>
+                                </a>
+                            </div>
+                            <!-- Contact Us -->
+                            <div class="slds-col" style="padding: 5px;cursor: pointer;">
+                                <a href="{!v.cscPath +'/s/discussion-board'}"  style="color: black; display:inline-block;">
+                                    <span class = "copy"> Community Discussion Board </span>
+                                </a>
+                            </div>
+                            <div>
+                                <aura:if isTrue="{!v.currentUser.FirstName != null}">
+                                <div class="slds-col" style="padding: 5px;cursor: pointer;">                   
+                                    <aura:if isTrue="{!v.mobile3 == false}">
+                                        <div onclick="{!c.mob3}">
+                                            <span style="color: black;" class="copy"> More </span>
+                                            <span class="mobile-chevron">
+                                                <lightning:buttonIcon iconName="utility:chevrondown" variant="bare" onclick="{!c.mob3}" alternativeText="Open accordian" title="Open accordian button" />
+                                            </span>
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.mobile3}">
+                                        <div onclick="{!c.Cmob3}">
+                                            <span style="color: black;" class="copy"> More </span>
+                                            <span class="mobile-chevron">
+                                                <lightning:buttonIcon iconName="utility:chevronup" variant="bare" onclick="{!c.Cmob3}" alternativeText="Open accordian" title="Open accordian button" />
+                                            </span>
+                                        </div>
+                                    </aura:if>
+                                </div>
+                                <aura:if isTrue="{!v.mobile3}">                    
+                                    <div class="slds-col" style="background-color: rgb(0,105,92);">                   
+                                        <ul><a href="{!v.cscPath +'/s/case/Case/00Bt00000015uwAEAQ'}" class="mobile-menu-item">My Requests</a></ul>
+                                        <ul><a href="{!v.cscPath +'/s/submit-success-story'}" class="mobile-menu-item">Submit Success Story</a></ul>  
+                                        <ul><a href="{!v.cscPath +'/s/newsletter'}" class="mobile-menu-item">Newsletter</a></ul>  
+                                    </div>
+                                </aura:if>
+                                </aura:if>
+                            </div>
+                        </div>
+                    </div>
+                </aura:if>   
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,26 @@
+<template>
+    <lightning-card  title="Recently Added">
+        <div class="slds-var-p-left_medium">
+            <template if:true={knowledgeArticles.data}>
+                <template for:each={knowledgeArticles.data} for:item="knowledgeArticle">
+                    <div key ={knowledgeArticle.Id}>
+                        <c-community-knowledge-articles knowledge-article={knowledgeArticle}>
+                        </c-community-knowledge-articles>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+    <lightning-card  title="Recently Updated">
+        <div class="slds-var-p-left_medium">
+            <template if:true={knowledgeArticlesUpdated.data}>
+                <template for:each={knowledgeArticlesUpdated.data} for:item="knowledgeArticleUpdated">
+                    <div key ={knowledgeArticleUpdated.Id}>
+                        <c-community-knowledge-articles knowledge-article={knowledgeArticleUpdated}>
+                        </c-community-knowledge-articles>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

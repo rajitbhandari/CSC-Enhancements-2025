@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allow_Only_Hours_to_be_entered</fullName>
+    <active>true</active>
+    <description>User need to enter only hours(number) while answering Approximately how many total hours did it take you to resolve this case?</description>
+    <errorConditionFormula>Survey_Question__r.Name  =&apos;Approximately how many total hours did it take you to resolve this case?&apos; &amp;&amp;  not(ISNUMBER(Response__c )) &amp;&amp; Response__c !=&apos;&apos;</errorConditionFormula>
+    <errorMessage>User need to enter only hours(number) while answering this question - Approximately how many total hours did it take you to resolve this case?</errorMessage>
+</ValidationRule>

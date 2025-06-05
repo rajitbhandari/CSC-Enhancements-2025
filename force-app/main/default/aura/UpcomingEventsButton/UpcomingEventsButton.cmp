@@ -1,0 +1,16 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    
+    <div class="ctaPanel siteforceNapiliFooter">
+        <div class="contact-con">
+            <div class="cta-btn askCommunityButton stylingOverrideHook_5510" style="margin-top:0px;">
+                <button 
+                        id="upcomingEvents"
+                        class="askCommunityBtn slds-button forceCommunityAskCommunity"  
+                        data-aura-class="forceCommunityAskCommunity"
+                        onclick="{!c.eventsCalendar}"
+                        style="margin:0 auto; border-radius:0px;"
+                        >View Upcoming Events</button>
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>published_articles</fullName>
+    <columns>TITLE</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>URL_NAME</columns>
+    <columns>ARTICLE_NUMBER</columns>
+    <columns>LANGUAGE</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>FIRST_PUBLISHED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Covering_as_a_Benefit_Summary__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PUBLISH_STATUS</field>
+        <operation>equals</operation>
+        <value>2</value>
+    </filters>
+    <filters>
+        <field>LANGUAGE</field>
+        <operation>equals</operation>
+        <value>en_US</value>
+    </filters>
+    <label>Published Articles</label>
+</ListView>

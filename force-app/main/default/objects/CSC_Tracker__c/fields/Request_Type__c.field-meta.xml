@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Request_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Request Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New KA</fullName>
+                <default>false</default>
+                <label>New KA</label>
+            </value>
+            <value>
+                <fullName>Update KA</fullName>
+                <default>false</default>
+                <label>Update KA</label>
+            </value>
+            <value>
+                <fullName>Retire KA</fullName>
+                <default>false</default>
+                <label>Retire KA</label>
+            </value>
+            <value>
+                <fullName>New Webinar</fullName>
+                <default>false</default>
+                <label>New Webinar</label>
+            </value>
+            <value>
+                <fullName>Email</fullName>
+                <default>false</default>
+                <label>Email</label>
+            </value>
+            <value>
+                <fullName>Event/Meeting</fullName>
+                <default>false</default>
+                <label>Event/Meeting</label>
+            </value>
+            <value>
+                <fullName>Enhancement</fullName>
+                <default>false</default>
+                <label>Enhancement</label>
+            </value>
+            <value>
+                <fullName>Report/Dashboard</fullName>
+                <default>false</default>
+                <label>Report/Dashboard</label>
+            </value>
+            <value>
+                <fullName>Process/Automation</fullName>
+                <default>false</default>
+                <label>Process/Automation</label>
+            </value>
+            <value>
+                <fullName>SOP</fullName>
+                <default>false</default>
+                <label>SOP</label>
+            </value>
+            <value>
+                <fullName>Homepage Announcement</fullName>
+                <default>false</default>
+                <label>Homepage Announcement</label>
+            </value>
+            <value>
+                <fullName>508 Review/Compliance</fullName>
+                <default>false</default>
+                <label>508 Review/Compliance</label>
+            </value>
+            <value>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+                <label>Reporting</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Update/Edit Document</fullName>
+                <default>false</default>
+                <label>Update/Edit Document</label>
+            </value>
+            <value>
+                <fullName>Complete 508 Compliance</fullName>
+                <default>false</default>
+                <label>Complete 508 Compliance</label>
+            </value>
+            <value>
+                <fullName>Create Document</fullName>
+                <default>false</default>
+                <label>Create Document</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

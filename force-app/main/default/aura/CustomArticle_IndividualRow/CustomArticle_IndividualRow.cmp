@@ -1,0 +1,27 @@
+<!--
+ - Created by vpolavarapu on 9/19/2019.
+ -->
+
+<aura:component description="CustomArticle_IndividualRow"
+                implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+                access="global" >
+    <aura:attribute name="knowledgeObject" type="Object"/>
+    <div class="slds-grid slds-grid_vertical slds-m-around--medium">
+        <div class="slds-col slds-size_11-of-12">
+            <div class="slds-text-heading_small">
+            	<a  href="{!v.knowledgeObject.urlToRecirect}" >
+                    {!v.knowledgeObject.knowledgeTitle}
+            	</a>
+       	 	</div>
+        </div>
+        <div class="slds-col slds-size_7-of-12">
+            <ul class="slds-list_horizontal slds-has-dividers_left">
+                <li class="slds-item">{!v.knowledgeObject.NumberOfViews} Views</li>
+                <li class="slds-item">{!v.knowledgeObject.dateAdded}</li>
+                <aura:if isTrue="{!v.knowledgeObject.newArticle == 'New!'}">
+                	<li class="slds-item newArticle">{!v.knowledgeObject.newArticle}</li>
+                </aura:if>
+            </ul>
+        </div>
+    </div>
+</aura:component>

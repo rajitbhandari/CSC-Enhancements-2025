@@ -1,0 +1,121 @@
+<!--
+ - Created by vpolavarapu on 8/27/2019.
+ - Added text for vulnerability, removed lists and replaced them with div for QUESTIONS
+ - Refer https://jira.dd.deloitte.com/browse/CGK-6181
+ - Refer https://jira.dd.deloitte.com/browse/CGK-6185
+ -->
+ <aura:component description="CommunitiesFooter" implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <ltng:require styles="{!$Resource.CDC_Footer_Css}"/>
+    <ltng:require styles="{!$Resource.Bootstrap_Css}"/>
+    <div class="bs4">
+        <div class="cdcFooter">
+            <footer role="contentinfo" aria-label="Footer">
+                <div class="container-fluid footer-wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <address class="col-md-3" itemscope="itemscope" itemtype="https://schema.org/Organization">
+                                <strong>HAVE QUESTIONS?</strong>
+                                <div style="display: flex;flex-wrap: wrap;margin-right: -15px;">
+                    <div class="row mt-2">
+                        <div class="col-1"><img src="{!$Resource.CDC_Icon_Desktop}" alt="Visit CDC INFO" style="max-height: 25.5px; max-width: 25.5px;"/></div>
+                        <div class="col">
+                            <span class="pl-1"><a href="https://www.cdc.gov/cdc-info/index.html">Visit CDC-INFO</a></span>
+                        </div>
+                    </div>
+                                </div>
+                                <div style="display: flex;flex-wrap: wrap;margin-right: -15px;">
+                    <div class="row mt-2">
+                        <div class="col-1"><img src="{!$Resource.Cdc_footer_Phone}" alt="Call 800-232-4636" style="max-height: 25.5px; max-width: 25.5px;"/></div>
+                        <div class="col">
+                            <span class="pl-1" itemprop="telephone">Call 800-232-4636</span>
+                        </div>
+                    </div>
+                                </div>
+                <div style="display: flex;flex-wrap: wrap;margin-right: -15px;">
+                    <div class="row mt-2" >
+                        <div class="col-1"><img src="{!$Resource.Cdc_footer_Email}" alt="Email CDC INFO" style="position: absolute; left: 100; height: 0; width: 100%; height: 100%"/></div>
+                        <div class="col">
+                            <span class="pl-1"><a href="https://wwwn.cdc.gov/dcs/contactus/form">Email CDC-INFO</a></span>
+                        </div>
+                    </div>
+                                </div>
+                            </address>
+                            <div class="col-md-3 mt-3 mt-md-0">
+                                <strong>CDC INFORMATION</strong>
+                                <ul>
+                                    <li><a href="https://www.cdc.gov/about/default.htm">About CDC</a></li>
+                                    <li><a href="https://jobs.cdc.gov">Jobs</a></li>
+                                    <li><a href="https://www.cdc.gov/funding">Funding</a></li>
+                                    <li><a href="https://www.cdc.gov/Other/policies.html">Policies</a></li>
+                                    <li><a href="https://www.cdc.gov/other/plugins/index.html">File Viewers &amp; Players</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <ul>
+                                    <li><a href="https://www.cdc.gov/Other/policies.html">Privacy</a></li>
+                                    <li><a href="https://www.cdc.gov/od/foia">FOIA</a></li>
+                                    <li><a href="https://www.cdc.gov/eeo/nofearact/index.htm">No Fear Act</a></li>
+                                    <li><a href="https://oig.hhs.gov">OIG</a></li>
+                                    <li><a href="https://www.cdc.gov/other/nondiscrimination.html">Nondiscrimination</a></li>
+                                    <li><a href="https://www.cdc.gov/contact/accessibility.html">Accessibility</a></li>
+                                    <li><a href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html">Vulnerability Disclosure Policy</a> | <a href="https://www.hhs.gov/es/vulnerability-disclosure-policy/index.html">Español</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3 mt-2 mt-md-0 connect-icons">
+                                <strong>CONNECT WITH CDC</strong>
+                                <br/>
+                                <ul class="list-inline mt-3">
+                                    <li>
+                                        <a href="https://www.facebook.com/CDC" target="_blank">
+                                            <span class="sr-only">
+                                                Facebook
+                                            </span>
+                                            <img src="{!$Resource.Cdc_footer_Fb}" alt="Link To CDC Facebook"/>
+                                        </a>
+                                    </li>
+                                    <li><a href="https://twitter.com/CDCgov" target="_blank"><span class="sr-only">Twitter</span>
+                                            <img src="{!$Resource.Cdc_footer_Twitter}" alt="Link To CDC Twitter" style ="width: 19px;padding-top: 3px;"/></a></li>
+                                    <li><a href="https://www.youtube.com/user/CDCstreamingHealth" target="_blank"><span class="sr-only">Youtube</span><img src="{!$Resource.Cdc_footer_Youtube}" alt="Link To CDC Youtube"/></a></li>
+                                    <li><a href="https://www.instagram.com/CDCgov/" target="_blank"><span class="sr-only">Instagram</span><img src="{!$Resource.Cdc_footer_Insta}" alt="Link To CDC Instagram"/></a></li>
+                                </ul>
+                                <br class="d-none d-md-block"/>
+                                <ul class="list-inline mt-2">
+                                    <li><a href="https://tools.cdc.gov/medialibrary/index.aspx#/sharecontent/https://www.cdc.gov/index.htm" class="footer-syndlink"><span class="sr-only">Syndicate</span><img src="{!$Resource.Cdc_footer_ShareContent}" alt="Link To CDC Public Health Media Library"/></a></li>
+                                    <li><a href="https://www.cdc.gov/cdctv"><span class="sr-only">CDC TV</span><img src="{!$Resource.Cdc_footer_CDC_TV}" alt="Link To CDC TV"/></a></li>
+                                    <li><a href="https://tools.cdc.gov/podcasts/rss.asp"><span class="sr-only">RSS</span><img src="{!$Resource.Cdc_footer_Podcast}" alt="Link To CDC Podcast"/></a></li>
+                                    <li><a href="https://wwwn.cdc.gov/dcs/RequestForm.aspx"><span class="sr-only">Email</span><img src="{!$Resource.Cdc_footer_Email}" alt="Link To CDC Email"/></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid agency-footer">
+                    <div class="container">
+                        <div class="row" itemscope="itemscope" itemtype="https://schema.org/Organization">
+                            <div class="col-md-6 mt-1 mt-md-0">
+                                <span class="value" itemprop="contactPoint" itemscope="itemscope" itemtype="https://schema.org/ContactPoint">
+                                    <span itemprop="url"><a href="https://www.hhs.gov">U.S. Department of Health &amp; Human Services</a></span>
+                                </span>
+                            </div>
+                            <div class="col-md-3 mt-1 mt-md-0">
+                                <span class="value" itemprop="contactPoint" itemscope="itemscope" itemtype="https://schema.org/ContactPoint">
+                                    <span itemprop="url"><a href="https://www.usa.gov/">USA.gov</a></span>
+                                </span>
+                            </div>
+                            <div class="col-md-3 mt-1 mt-md-0">
+                                <span class="value">
+                                    <span>
+                                        <a href="https://www.cdc.gov/Other/disclaimer.html" class="footer-ext">
+                                             <span>CDC Website Exit Disclaimer </span>
+                                            <lightning:icon iconName="utility:new_window" size="xx-small" class="slds-icon-text-light" />
+                                        </a>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</aura:component>

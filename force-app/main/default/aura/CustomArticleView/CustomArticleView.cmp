@@ -1,0 +1,59 @@
+<!--
+ - Created by vpolavarapu on 9/18/2019.
+ - Edited by kperry on 9/19/2019. (indent subtopics and enlarge KA text)
+ -->
+
+<aura:component
+                controller="CustomArticleViewController"
+                implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute type="object" name="ArticlesIdentified" />
+    <aura:attribute type="string" name="activeSectionName" />
+    <aura:attribute type="Boolean" name="ShowKeyArticle" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+    <aura:if isTrue="{!v.ArticlesIdentified}">
+        <aura:if isTrue="{!v.ShowKeyArticle}">
+            <h2 style="margin-left: 09px;margin-top: 10px;font-size: 12pt;">Key Articles </h2>
+            <aura:iteration items="{!v.ArticlesIdentified}" var="parentTopic" >                       
+                
+                <aura:iteration items="{!parentTopic.PriorityArticlesForTheTopic}" var="artcile" >
+                    <c:CustomArticle_IndividualRow knowledgeObject = "{!artcile}"/>
+                </aura:iteration>
+            </aura:iteration>
+        </aura:if>
+        <lightning:accordion aura:id="accordion" activeSectionName="{!v.activeSectionName}" allowMultipleSectionsOpen="true">
+            <aura:iteration items="{!v.ArticlesIdentified}" var="parentTopic" >
+                <lightning:accordionSection name="{!parentTopic.TopicId}" label="{!parentTopic.TopicName}">
+                    <aura:set attribute="body">
+                        <aura:if isTrue="{!parentTopic.ArticlesForTheTopic.length>0}">
+                            <aura:iteration items="{!parentTopic.ArticlesForTheTopic}" var="artcile" >
+                                <c:CustomArticle_IndividualRow
+                                                               knowledgeObject = "{!artcile}"
+                                                               />
+                            </aura:iteration>
+                            <aura:set attribute="else" >
+                                <b style="color:red">No Articles are available for {!parentTopic.TopicName}.</b>
+                            </aura:set>
+                        </aura:if>
+                    </aura:set>
+                </lightning:accordionSection>
+                <aura:iteration items="{!parentTopic.childTopicsAssociated}" var="childTopic" >
+                    <div class="slds-p-left_xx-large">
+                        <lightning:accordionSection name="{!childTopic.TopicId}" label="{!childTopic.TopicName}">
+                            <aura:set attribute="body">
+                                <aura:iteration items="{!childTopic.ArticlesForTheTopic}" var="artcile" >
+                                    <c:CustomArticle_IndividualRow knowledgeObject = "{!artcile}" />                                                                 
+                                </aura:iteration>
+                            </aura:set>
+                        </lightning:accordionSection>
+                    </div>
+                </aura:iteration>
+            </aura:iteration>
+            
+        </lightning:accordion>
+    </aura:if>
+    
+    
+    
+</aura:component>

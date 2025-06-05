@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SME</fullName>
+    <columns>NAME</columns>
+    <columns>Question__c</columns>
+    <columns>OrderNumber__c</columns>
+    <columns>Survey__c</columns>
+    <columns>Choices__c</columns>
+    <columns>Need_Ordered_Picklist_for_Reporting__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Survey__c</field>
+        <operation>equals</operation>
+        <value>Quarterly CDC SME Feedback</value>
+    </filters>
+    <label>SME Surveys</label>
+</ListView>

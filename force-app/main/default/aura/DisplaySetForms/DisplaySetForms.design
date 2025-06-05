@@ -1,0 +1,9 @@
+<design:component >
+	<design:attribute name="fieldSetName" label=" Step 1 Field Set Name" description="Fields to display in step one" />
+    <design:attribute name="fieldSetName2" label=" Step 2 Field Set Name" description="Fields to display in step two" />
+    <design:attribute name="StepOneLabel"  description="Label to Display First Step" default="Step One"  />
+	<design:attribute name="SteptTwoLabel"  description="Label to Display First Step" default="Step Two"  />
+    <design:attribute name="StepThreeLabel"  description="Label to Display First Step" default="Step Three"  />
+    
+    
+</design:component>

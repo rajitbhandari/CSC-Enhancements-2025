@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Webinar</fullName>
+    <active>true</active>
+    <label>Webinar</label>
+    <picklistValues>
+        <picklist>Distribution_List__c</picklist>
+        <values>
+            <fullName>1705</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1901 Islands</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AMP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DPRP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DREM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Full %28only select this if sending to all%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Training Entities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tribal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>KA_Resource_Type__c</picklist>
+        <values>
+            <fullName>Covering as a Benefit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivering the Lifestyle Change Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Learning About the National DPP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnering for Success</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prediabetes Screening Testing %26 Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promotion Awareness %26 Action</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Request_Type__c</picklist>
+        <values>
+            <fullName>New Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Awaiting Materials</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type_of_Webinar_Support__c</picklist>
+        <values>
+            <fullName>Live%2C Real-Time Support %28Co-hosting to Posting%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Live%2C Real-Time Support %28Full Support%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pre-recorded Support %28Posting Completed Video%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pre-recorded Support %28Video Clearance to Posting%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pre-recorded Support %28eClearance to Posting%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standalone Support %28Recording to Posting%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,12 @@
+<template>
+    <h2 style="font-weight:700;font-size: 12pt;">{title}</h2>
+
+      <template for:each={resourceData} for:item="topKA">
+                
+        <a href={topKA.ka_URL} key={topKA.ka_Title}>
+        <div key={topKA.ka_Title} class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
+          <span class="slds-text-body_small slds-hyphenate ">{topKA.ka_Title}</span>
+        </div>
+        </a>
+      </template>
+</template>

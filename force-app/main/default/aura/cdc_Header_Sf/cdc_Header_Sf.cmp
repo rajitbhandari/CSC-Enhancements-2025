@@ -1,0 +1,23 @@
+<!--
+ - Created by vpolavarapu on 9/13/2019.
+ -->
+<aura:component description="cdc_Header_Salesforce" implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <ltng:require styles="{!$Resource.CDC_Footer_Css}"/>
+    <ltng:require styles="{!$Resource.Bootstrap_Css}"/>
+
+    <div class="bs4">
+        <div class="cdcFooter">
+            <div class="container-fluid header-wrapper">
+                <div class="">
+                    <header role="banner" aria-label="Header" class="pt-2 pb-2">
+                        <div class="row">
+                            <div class="col cdc-logo">
+                                <c:cdc_Header_Salesforce/>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

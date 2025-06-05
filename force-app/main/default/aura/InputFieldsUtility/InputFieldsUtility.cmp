@@ -1,0 +1,154 @@
+<!--
+ - Created by vPolavarapu;
+ -this componenet is utility which helps to geenerate ui for various field types
+ -->
+<aura:component controller="DisplayFormsThroughFieldSetController" implements="flexipage:availableForAllPageTypes">
+	<aura:attribute name="FieldLabel" type="String" default=""/>
+    <aura:attribute name="Question" type="String" default=""/>
+    <aura:attribute name="FieldAPIName" type="String" default=""/>
+    <aura:attribute name="FieldValue" type="String" default=""/>
+    <aura:attribute name="PicklistOptions" type="String[]" />
+    <aura:attribute name="FieldType" type="String" default=""/>
+    <aura:attribute name="isReq" type="boolean" default="false"/>
+    <aura:attribute name="HelpText" type="String" default=""/>
+     <aura:attribute name="isEditable" type="Boolean" default="true"/>
+      <aura:attribute name="fieldDisabled" type="Boolean" default="false" />
+
+    <div class="slds-form-element">
+        <label class="slds-form-element__label">
+        	<br/><b> Q : {!v.FieldLabel} 
+                <aura:if isTrue="{!v.isReq}" >
+                    <abbr class="slds-required" title="required">*</abbr>
+                </aura:if>
+            </b>
+        </label> <br/>
+        <span class="slds-form-element__control">
+            
+      <!--     <aura:if isTrue="{!or(v.FieldType == 'PICKLIST',v.FieldType == 'MULTIPICKLIST')}" >-->
+       <!--   <aura:if isTrue="{!(v.FieldType == 'MULTIPICKLIST')}" >
+
+            <aura:if isTrue="{!v.isEditable}" >
+              <ui:inputSelect value="{!v.FieldValue}" required="{!v.isReq}" aura:id="optt" disabled="{!v.fieldDisabled}" multiple="{!v.FieldType == 'MULTIPICKLIST'}" >
+                <aura:iteration items="{!v.PicklistOptions}" var="level">
+                    <ui:inputSelectOption text="{!level}"  label="{!level}"/>
+                </aura:iteration>
+              </ui:inputSelect>
+              <aura:set attribute="else">
+                <ui:outputText value="{!v.FieldValue}"/>
+              </aura:set>
+            </aura:if>
+     	 </aura:if>  -->
+                          	
+		<aura:if isTrue="{!v.FieldType == 'MULTIPICKLIST'}" >  
+              <aura:if isTrue="{!v.isEditable}" >
+               <aura:iteration items="{!v.PicklistOptions}" var="stage">
+                      <lightning:input type="checkbox" label="{!stage}" name="{!v.FieldAPIName}" value="{!v.FieldValue}" aura:id="CheckBoxButton" onchange="{!c.changemultiSelect}"/>
+              	</aura:iteration> 
+                 <br/>
+                  <aura:set attribute="else">
+                	<ui:outputText value="{!v.FieldValue}"/>
+              	  </aura:set>
+             </aura:if>
+       </aura:if> 
+            
+            
+            <aura:if isTrue="{!v.FieldType == 'PICKLIST'}" >  
+              <aura:if isTrue="{!v.isEditable}" >
+               <aura:iteration items="{!v.PicklistOptions}" var="stage">
+                      <lightning:input type="radio" label="{!stage}" name="{!v.FieldAPIName}" value="{!v.FieldValue}" aura:id="RadioButton" onchange="{!c.changeSelect}"/>
+              	</aura:iteration> 
+                 <br/>
+                  <aura:set attribute="else">
+                	<ui:outputText value="{!v.FieldValue}"/>
+              	  </aura:set>
+             </aura:if>
+           </aura:if> 
+          
+          <aura:if isTrue="{!v.FieldType == 'STRING'}" >
+            <aura:if isTrue="{!v.isEditable}" >
+              <ui:inputText required="{!v.isReq}" value="{!v.FieldValue}" class="slds-input" /> 
+              <aura:set attribute="else">
+                <ui:outputText value="{!v.FieldValue}"/>
+              </aura:set>
+            </aura:if>
+          </aura:if>
+            
+		<aura:if isTrue="{!v.FieldType == 'CURRENCY'}" >
+        <aura:if isTrue="{!v.isEditable}" >
+          <ui:inputCurrency required="{!v.isReq}" value="{!v.FieldValue}" class="slds-input" />
+          <aura:set attribute="else">
+            <ui:outputCurrency value="{!v.FieldValue}"/>
+          </aura:set>
+        </aura:if>
+      </aura:if> 
+	
+	 <aura:if isTrue="{!v.FieldType == 'BOOLEAN'}" >
+        <aura:if isTrue="{!v.isEditable}" >
+          <ui:inputCheckbox required="{!v.isReq}" value="{!v.FieldValue}" />
+          <aura:set attribute="else">
+            <div class="uiImage uiOutputCheckbox">
+              <img src="/auraFW/resources/aura/s.gif" class="{!v.FieldValue?'checked':'unchecked'}" alt="{!v.FieldValue?'True':'False'}"/>
+            </div>
+          </aura:set>
+        </aura:if>
+      </aura:if> 
+     
+      <aura:if isTrue="{!v.FieldType == 'DATE'}" >
+        <aura:if isTrue="{!v.isEditable}" >
+          <ui:inputDate required="{!v.isReq}" format="MM/DD/YYYY" value="{!v.FieldValue}" displayDatePicker="true"  class="slds-input" />
+          <aura:set attribute="else">
+            <ui:outputDate format="MM/DD/YYYY" value="{!v.FieldValue}"/>
+          </aura:set>
+        </aura:if>
+      </aura:if>
+
+      <aura:if isTrue="{!v.FieldType == 'DATETIME'}" >
+        <aura:if isTrue="{!v.isEditable}" >
+          <ui:inputDateTime required="{!v.isReq}" format="MM/DD/YYYY h:mm a" value="{!v.FieldValue}" displayDatePicker="true"  class="slds-input"  />
+          <aura:set attribute="else">
+            <ui:outputDate format="MM/DD/YYYY h:mm a" value="{!v.FieldValue}"/>
+          </aura:set>
+        </aura:if>
+      </aura:if>
+       
+      <aura:if isTrue="{!v.FieldType == 'TEXTAREA'}" >
+        <aura:if isTrue="{!v.isEditable}" >
+          <ui:inputTextArea required="{!v.isReq}" value="{!v.FieldValue}" class="slds-input"  />
+          <aura:set attribute="else">
+            <ui:outputTextArea value="{!v.FieldValue}"/>
+          </aura:set>
+        </aura:if>
+      </aura:if>
+
+      <aura:if isTrue="{!v.FieldType == 'RICHTEXT'}" >
+        <aura:if isTrue="{!v.isEditable}" >
+          <lightning:inputRichText value="{!v.FieldValue}" />
+          <aura:set attribute="else">
+            <lightning:formattedRichText value="{!v.FieldValue}" />
+          </aura:set>
+        </aura:if>
+      </aura:if>
+      
+      <aura:if isTrue="{!or(v.FieldType == 'INTEGER', v.FieldType == 'DOUBLE')}" >
+        <aura:if isTrue="{!v.isEditable}" >
+          <ui:inputNumber required="{!v.isReq}" value="{!v.FieldValue}" class="slds-input" />
+          <aura:set attribute="else">
+            <ui:outputNumber value="{!v.FieldValue}"/>
+          </aura:set>
+        </aura:if>
+      </aura:if>
+
+      <aura:if isTrue="{!v.FieldType == 'PERCENT'}" >
+        <aura:if isTrue="{!v.isEditable}" >
+          <ui:inputNumber required="{!v.isReq}" value="{!v.FieldValue}" class="slds-input" format="#,###.#0" />
+          <aura:set attribute="else">
+            <aura:if isTrue="{!v.FieldValue!=null}">
+              <ui:outputNumber value="{!v.FieldValue/100}" format="#,###.00%"/>
+            </aura:if>
+          </aura:set>
+        </aura:if>
+      </aura:if>
+     </span>
+             
+    </div>  
+</aura:component>

@@ -1,0 +1,25 @@
+<aura:component implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" controller = "CDC_ApexUtilities" access="global" >
+	
+        <aura:attribute type="string" name="response" default="Processing...."/>
+    <aura:attribute type="boolean" name ="type" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:workspaceAPI aura:id="workspace"/>
+    
+    <lightning:card>
+        <aura:set attribute="title">
+            <lightning:icon iconName="action:change_owner" size="xx-small"/>&nbsp;
+            <strong>"{!v.response}"</strong>
+        </aura:set>
+
+    </lightning:card>
+    <br/>
+    <br/>
+    
+        <aura:if isTrue="{!v.type}">
+
+    <div style="margin-left:600px">
+        <ui:button label="Close" press="{!c.closeFocusedTab}"/>
+        </div>
+    </aura:if>
+</aura:component>

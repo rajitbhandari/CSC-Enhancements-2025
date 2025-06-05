@@ -1,0 +1,56 @@
+<aura:component controller="AnyEventCalCtrl" implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <ltng:require styles="{!$Resource.AnyEventCal + '/fullcalendar.min.css'}"/>
+    <aura:attribute name="events" type="Map"/>
+    <aura:attribute name="myURL" type="String" default="http://www.google.com"/>
+    <aura:attribute name="objectLabel" type="String"/>
+    <aura:attribute name="sObjectName" type="String"/>
+    <aura:attribute name="titleField" type="String"/>
+    <aura:attribute name="startDateTimeField" type="String"/>
+    <aura:attribute name="endDateTimeField" type="String"/>
+    <aura:attribute name="descriptionField" type="String"/>
+    <aura:attribute name="userField" type="String"/>
+    <aura:attribute name="calendarButtons" type="String"/>
+    <aura:attribute name="weekends" type="Boolean"/>
+    <aura:attribute name="eventBackgroundColor" type="String"/>
+    <aura:attribute name="eventBorderColor" type="String"/>
+    <aura:attribute name="eventTextColor" type="String"/>
+    <aura:attribute name="idVal" type="String"/>
+    <aura:attribute name="titleVal" type="String"/>
+    <aura:attribute name="descriptionVal" type="String"/>
+    <aura:attribute name="startDateTimeVal" type="DateTime"/>
+    <aura:attribute name="endDateTimeVal" type="DateTime"/>
+    <aura:attribute name="newOrEdit" type="String" default="New"/>
+    <aura:handler name="change" value="{!v.events}" action="{!c.renderCalendar}"/>
+    <aura:attribute name="isOpen" type="boolean" default="false"/> 
+    
+    <div id="calendar" class="anyCalendar"></div>
+     <aura:if isTrue="{!v.isOpen}">
+    	<div aura:id="modal" class="slds-modal slds-fade-in-open">
+    
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+
+                    <lightning:buttonIcon size="large" iconName="utility:close" variant="bare" onclick="{!c.closeModal}" alternativeText="Close window." class="slds-modal__close" />
+
+                <h2 id="header43" class="slds-text-heading--medium">Event Details</h2>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium">
+                <div class="slds-form--stacked">
+
+                    <b>Title:</b> <br/><ui:outputText aura:id="title"  value="{!v.titleVal}" />
+                    <br/> <br/>
+                    <b>Description:</b> <br/><ui:outputTextArea aura:id="description" linkify = "True"  value="{!v.descriptionVal}" />
+                    <br/> <br/>
+                    <b>Start Time:</b><br/><ui:outputDateTime aura:id="startTime"  value="{!v.startDateTimeVal}" />
+                    <br/> <br/>
+                    <b> End Time:</b><br/> <ui:outputDateTime aura:id="EndTime"  value="{!v.endDateTimeVal}" />
+                    
+                </div>
+            </div>
+           
+        
+    </div>
+ </div>
+  <div class="slds-backdrop slds-backdrop--open" aura:id="backdrop"></div>
+</aura:if>
+</aura:component>

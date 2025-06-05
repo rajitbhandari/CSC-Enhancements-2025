@@ -1,0 +1,105 @@
+<!--
+
+ -this compoenent  helps to look up for a account during the type ahead search
+ -->
+
+<aura:component controller="LightningSelfRegisterController" >
+    <!-- Required Scripts/Styles -->
+    <!-- Salesforce Lightning Design System : https://www.lightningdesignsystem.com/ -->
+    <!-- Attributes -->
+    <aura:attribute name="sObjectAPIName" type="String" required="true" 
+        description="The API name of the SObject to search" />
+    <aura:attribute name="instanceId" type="String" required="true" 
+        description="An id to identify the instance the component" />
+    <aura:attribute name="index" type="String" 
+        description="Index to be mentioned if used in iterations" />
+    <aura:attribute name="label" type="String" required="false" 
+        description="The label to assign to the lookup, eg: Account" />
+    <aura:attribute name="pluralLabel" type="String" required="true" 
+        description="The plural label to assign to the lookup, eg: Accounts" />
+    <aura:attribute name="listIconClass" type="String" default="slds-icon-custom-11" 
+        description="The SLDS class to use for the icon." />
+    <aura:attribute name="searchString" type="String" 
+        description="The search string to find." />
+     <aura:attribute name="whereClause" type="String" 
+        description="The where clause string to filter on records." />
+    <aura:attribute name="matches" type="list"
+        description="The resulting matches returned by the Apex controller." />
+    <aura:attribute name="placeholder" type="string"  />
+    <aura:attribute name="disabled" type="Boolean" default="false"
+        description="The attribute to control readonly behaviour of lookup" />
+    <aura:attribute name="rawSOQL" type="String"
+        description="Pass raw soql to be executed" />
+    <aura:attribute name="errorMessageValue" type="string" default=""/>
+    <aura:attribute name="context" type="String"
+        description="Context with which this code is working" />
+    <aura:attribute name="orgCodeObject" type="string" required="false"/>
+
+    <!-- Handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <!-- Events -->
+	<aura:registerEvent name="updateLookupIdEvent" type="c:UpdateLookupId"/>   
+    
+    <!-- Lookup Markup : See https://www.lightningdesignsystem.com/components/lookups -->
+    <div class="slds"> 
+        <div aura:id="lookup-div" class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
+            <!-- This is the Input form markup -->
+            <div class="slds-form-element">
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                    <!-- This markup is for when an item is currently selected -->
+                    <div aura:id="lookup-pill" class="slds-pill-container slds-hide">
+                        <span class="slds-pill slds-pill--bare">
+                            <span class="slds-pill__label">
+                                {!v.searchString}
+                            </span>
+                            <button class="slds-button slds-button--icon-bare" >
+                                <lightning:spinner variant="brand" size="large"/>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- This markup is for when searching for a string -->
+                     
+                  <div role="status" aura:id="spinnerimg" class="slds-spinner slds-spinner_delayed slds-spinner_small">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                  </div>
+
+                    <ui:inputText aura:id="lookup" placeholder="{!v.placeholder}" value="{!v.searchString}" class="slds-input" updateOn="keyup" blur="{!c.blur}" keyup="{!c.search}"  disabled="{!v.disabled}"/>
+                </div>
+            </div>
+            <!-- This is the lookup list markup. Initially it's hidden -->
+             <div aura:id="lookuplist" class="slds-lookup__menu slds-hide" role="listbox">
+                  <div class="slds-lookup__item" aura:id="addNew">
+                        <button id="AddNewValue" class="slds-button" onclick="{!c.select}">
+                            <a  >
+                               <lightning:icon iconName="utility:add" size="small" alternativeText="Add new value"/>
+                                Use this value
+                            </a>
+                               
+                        </button> 
+                    </div> 
+                 
+                 <aura:if isTrue="{!empty(v.matches)}">
+                     <div class="slds-lookup__item" aura:id="noresult">
+                        <button class="slds-button">
+                           No result found
+                        </button>
+                	</div>
+                 </aura:if>
+                <ul aura:id="lookuplist-items" class="slds-lookup__list" role="presentation">
+                    <aura:iteration items="{!v.matches}" var="match">
+                        <li class="slds-lookup__item">
+                            <a id="{!globalId + '_id_' + match.SObjectId}"  role="option" onclick="{!c.select}">
+                               {!match.SObjectLabel}
+                            </a>
+                            
+                            
+                        </li>
+                    </aura:iteration>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,9 @@
+<!--
+ - Created by vPolavarapu;
+ -this event helps to hold the id of the account which was selected by end users
+ -->
+<aura:event type="COMPONENT" description="Update Lookup Id" >
+    <aura:attribute name="sObjectId" type="Id" required="true" description="The Id of the selected SObject." />
+    <aura:attribute name="instanceId" type="String" required="true" description="The id to identify the instance the component" />
+    <aura:attribute name="index" type="String" description="Index to be mentioned if used in iterations" /> 
+</aura:event>

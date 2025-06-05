@@ -1,0 +1,136 @@
+.THIS section.cms-boxes .cms-boxes-outer {
+  text-align: left;
+  margin-bottom: 6px;
+  padding: 0 1px;
+}
+.THIS section.cms-boxes .cms-boxes-outer .cms-boxes-items {
+  height: 190px;
+  display: table;
+}
+.THIS section.cms-boxes .cms-boxes-outer .cms-boxes-items p {
+  color: #fff;
+}
+
+
+
+.THIS section.cms-boxes .cms-features {
+  background-color: #999999;
+}
+.THIS section.cms-boxes .boxes-align {
+ display: table-cell;
+    vertical-align: middle;
+height: 190px;
+    width: 272px;
+
+}
+.THIS section.cms-boxes .small-box, 
+.THIS section.cms-boxes .large-box {
+	box-sizing: content-box;  
+  width: 240px;
+  height: 74px;
+  padding: 0px;  
+  border: 1px solid none;
+
+}
+.THIS section.cms-boxes .cms-boxes-items h2 {
+  font-size: 0.9925rem;
+    font-weight: 900;
+  color: white !important;
+        font-family: Cabin;
+  text-align: center;
+    margin: 3px 0px 26px;
+   width: 76%;
+    filter: brightness(100%);
+    
+}
+
+.THIS section.cms-boxes .cms-security {
+background-color: rgba(0,0,0,0.4);}
+
+
+
+.THIS section.cms-boxes .cms-boxes-items:hover {
+  cursor: pointer;
+    background: #1b6370;
+}
+
+.THIS .imgclass:hover {
+     cursor: pointer;
+    background: #1b6370; 
+
+    
+}
+.THIS .container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+
+.THIS .centered {
+position: sticky;
+    font-weight: bold;
+    text-align: center;
+    text-transform: initial;
+    margin-top: -73px;
+    overflow-wrap: break-word;
+    word-break: normal;
+    overflow: hidden;
+    vertical-align: middle;
+    align-self: center;
+}
+
+
+.THIS img.flowerImg{
+width: 100%;
+    height: 90%;
+    object-fit: fill;
+    padding-bottom: 0px;
+    opacity:1;
+
+    filter: brightness(65%);
+    -webkit-filter: brightness(65%);
+      -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+          -ms-filter: brightness(65%);
+
+
+}
+.THIS img.flowerImg:hover{
+        opacity:0;
+
+}
+
+.THIS img.cover-image:hover{
+        opacity:0;
+     transition-duration: .6s;
+
+}
+
+.THIS .boxes-align:hover img.cover-image {
+     opacity:0; 
+     transition-duration: .6s;
+}
+
+
+.THIS .img_container {
+  position: relative;
+}
+.THIS .img_container img {
+  width: 100%;
+  height: 188px;
+    object-fit: cover;
+    opacity:1;
+       /* filter: brightness(65%);
+    background-size: cover;
+  background-repeat:no-reapeat;*/
+
+    
+}
+.THIS .img_container h2 {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left:  50%;
+  -webkit-transform: translate(-50%, -50%); /* iOS */
+  transform: translate(-50%, -50%);
+}

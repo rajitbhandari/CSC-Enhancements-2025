@@ -1,0 +1,26 @@
+@media (max-width: 768px) {
+    .MobileView {
+     display:grid;
+    }
+  }
+  .tileBorder {
+  border: 1px solid; 
+  border-top: 5px solid #00695C;
+  }
+  .tileButton {
+    font-size:20px; 
+    color: rgb(255,255,255); 
+    height: 62px;
+    width: 223px;
+  }
+  .tileImg {
+    width:280px; 
+    height:154px;
+  }
+  .fontStyle{
+    font-family: "Open Sans", sans-serif;
+  }
+  .tileButton:hover{
+    background-color:rgb(2, 73, 45);  
+    border: 3px solid black;
+  }

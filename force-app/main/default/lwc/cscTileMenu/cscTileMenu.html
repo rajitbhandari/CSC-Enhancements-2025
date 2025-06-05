@@ -1,0 +1,64 @@
+<template>
+    <div class="slds-grid slds-gutters MobileView fontStyle">
+        <div class="slds-m-around_xxx-small">
+            <div class="slds-col slds-box tileBorder">
+                    <ul class="slds-has-dividers_around-space">
+                        <li>
+                        <article class="slds-tile slds-tile_board">
+                            <div class="slds-tile__detail buttonHover">
+                                <button onclick= {cscButton} target="_blank" class="slds-button slds-button_brand tileButton"><b>How to Use the CSC</b></button>
+                            </div>
+                            <div>
+                                <lightning-card style="cursor: pointer;">
+                                    <div class="slds-m-around_medium">
+                                        <img onclick= {cscButton} target="_blank" class="tileImg"  alt= "CSC" src="/resource/1660669263000/computerIcon">
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </article>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <div class="slds-m-around_xxx-small">
+            <div class="slds-col slds-box tileBorder">
+                    <ul class="slds-has-dividers_around-space">
+                        <li>
+                        <article class="slds-tile slds-tile_board">
+                            <div class="slds-tile__detail">
+                                <button onclick={contactSupport} class="slds-button slds-button_brand tileButton"><b>Technical Support Request</b></button>
+                            </div>
+                            <div>
+                                <lightning-card style="cursor: pointer;">
+                                    <div class="slds-m-around_medium">
+                                        <img style = "padding: 10px 0px;" onclick={contactSupport} class="tileImg" alt= "CSC Support Request" src="/resource/1660669571000/technicalSupportRequest?">
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </article>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <div class ="slds-m-around_xxx-small">
+            <div class="slds-col slds-box tileBorder" >
+                    <ul class="slds-has-dividers_around-space">
+                        <li>
+                        <article class="slds-tile slds-tile_board">
+                            <div class="slds-tile__detail">
+                                <button target="_blank"  class="slds-button slds-button_brand tileButton"><b> Community Discussion Board</b></button>
+                            </div>
+                            <div>
+                                <lightning-card style="cursor: pointer;">
+                                    <div class="slds-m-around_medium">
+                                        <img target="_blank" class="tileImg" alt= "Discussion Board" src="/resource/1660669679000/discussionBoard?">
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </article>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+</template>

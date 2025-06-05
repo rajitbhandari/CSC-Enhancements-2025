@@ -1,0 +1,310 @@
+/* (New) Official U.S. Gov Site Banner Styles */
+
+.THIS .inner-content {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 26px;
+    padding-right: 26px;
+}
+.THIS .Certvisually-hidden {
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+    width: 1px;
+    height: 1px;
+    word-wrap: normal;
+}
+
+.THIS .inner-content-menu {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding-left: 16px; */
+    /* padding-right: 16px; */
+}
+
+.THIS .login-link {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.THIS .banner-element {
+    padding-right: 16px;
+}
+
+@media only screen and (max-width: 650px){
+    .THIS .ready-site-label {
+        display: none !important;
+    }
+}
+
+.THIS .menu-item-label, .THIS .menu-item-icon {
+    display: inline-block;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.THIS .menu-item-top {
+    background-color: transparent;
+    border: none;
+    vertical-align: middle;
+    text-align: left;
+    padding: 0;
+}
+
+
+/* #END# (New) Official U.S. Gov Site Banner Styles */
+
+
+.THIS .DesktopHeader2{
+    
+    background-color: rgb(0,105,92);
+    color:white;
+    
+}
+
+.THIS .close-icon{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+@media only screen and (max-width: 767px){
+    .THIS .DesktopHeader2{
+        display: none;
+    }
+}
+@media only screen and (max-width: 767px){
+    .THIS .desktopHeader4{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .THIS .ready-site-label {
+        display: none;
+    }
+    
+    .THIS .usa-banner-inner {
+        padding: 10px;
+    }
+}
+
+
+.THIS ul{
+    padding: 0px;
+}
+
+
+.THIS .DesktopHeader2 .slds-wrap{
+    
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.THIS .slds-icon-action-user{
+    background-color: white;
+}
+.THIS .slds-icon{
+    fill: rgb(10, 76, 50);
+}
+
+.THIS .DesktopHeader2 .slds-button{
+    color: white;
+    padding-left: 2px;
+}
+
+.THIS .profile{
+    text-align: right; 
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: rgb(0,105,92);
+}
+
+.THIS .profileChange{
+    text-align: right;
+}
+
+.THIS .dropdown-content {
+    position: absolute;
+    background-color: rgb(0,105,92);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 99;
+    margin-top: 10px;
+    margin-inline-start: -5px;
+    
+}
+
+.THIS .menu-item{
+    color: black;
+    /* padding: 10px 35px; */
+    background-color: white;
+}
+
+.THIS .menu-item-large{
+    color: black;
+    padding: 10px;
+    line-height: 25px;
+    border:1px solid green;
+}
+
+.THIS .desktopHeader4 .ul{
+    color: white;
+}
+
+.THIS .desktopHeader4{
+    background-color: rgb(255,255,255);
+    color: white;
+    font-size: 18px;
+}
+
+.THIS .desktopHeader4 .slds-button{
+    color: white;
+    padding-bottom: 5px;
+}
+.THIS .desktopHeader2 .slds-button{
+    color: white;
+}
+
+.THIS .desktopHeader3 {
+    background-color:rgb(0,105,92);
+}
+
+.THIS .test{
+    background-color: rgb(0,105,92);
+    outline: 0.15rem solid #2491ff;
+    outline-offset: 0;
+}
+.THIS .hamburger-container{
+    background-color: rgb(0,105,92);
+    padding: 10px;
+    width:60px;
+}
+.THIS .hamburger{
+    width: 35px;
+    height: 5px;
+    background-color: white;;
+    margin: 6px 0;
+}
+.THIS .slds-button{
+    color: white;
+}
+.THIS .mobile2 .slds-icon{
+    fill: white;
+}
+@media only screen and (min-width: 768px){
+    .THIS .mobile2{
+        display: none;
+    }    
+}
+
+.THIS .mobile-chevron{
+    float: right;
+    color: white;
+    padding-right: 12px;
+}
+
+.THIS .mobile-menu-item{
+    color: white;
+    padding: 10px;
+}
+
+.THIS ul>li{
+    display: inline-block;
+    position: relative;
+    line-height: 16px;
+    text-align: left;
+}
+.THIS ul>li>a{
+    display: block;
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    padding-right: 15px;
+    padding-left: 10px;
+    color: black;
+    background-color:rgb(200,234,229);
+    text-decoration: none;
+}
+.THIS ul>li>a.bCLR{
+    display: block;
+    color: White;
+    background-color:rgb(0,105,92);
+    text-decoration: none;
+}
+.THIS ul>li>a:hover{    
+    background-color: rgb(2, 73, 45);    
+}
+.THIS ul>li:hover> a{
+    background-color: rgb(2, 73, 45); 
+}
+.THIS .hoverColor ul>li:hover> a{
+color: white;
+}
+.THIS .textHover:hover> a{
+    color: white;
+    }
+
+.THIS ul>li>ul.dropdown{
+    min-width: 160px; 
+    background: rgb(0,105,92);
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+}
+.THIS ul>li:hover>ul.dropdown{
+    display: block;	
+}
+.THIS ul>li>ul.dropdown>li{
+    display: block;
+}
+
+.THIS ul>li:focus-within> ul {    
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+.THIS ul>li:focus-within> a {    
+    background:rgb(10, 76, 50);
+}
+.THIS .menuUL{
+    padding: 0;
+    list-style: none;
+    background: rgb(255,255,255);
+}
+.THIS .pointEvent{   
+    pointer-events: none;
+}
+
+.THIS .usa-banner__accordian-button .slds-button{
+    color:rgb(0,105,92) !important;
+}
+
+.THIS .usa-banner__accordian-button .slds-button__icon{
+    padding-bottom:2px;
+}
+@media only screen and (max-width: 775px){
+    .THIS .ready{
+        display:none;
+    }
+}
+.THIS .slds-button:focus{
+    border-color: white;
+}
+.THIS .slds-button:active{
+    border-color: white;
+}
+.THIS .slds-button:hover{
+    border-color: white;
+}
+
+.THIS .removeHover{
+    display: none;
+}
+.THIS .fontStyle{
+    font-family: "Open Sans", sans-serif;
+  }

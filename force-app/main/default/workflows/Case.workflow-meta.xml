@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Case_Closed_Survey_Customer_Satisfaction</fullName>
+        <description>Case Closed Survey Customer Satisfaction</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>nationaldppask@cdc.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>CDC_Case_Related/Case_Closed_Survey_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Case_Closed_Survey_TA_Referral</fullName>
+        <description>Case Closed Survey TA Referral</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>nationaldppask@cdc.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>CDC_Case_Related/Case_Closed_TA_Referral_Survey_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_to_Admin</fullName>
+        <description>Email to Admin</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>mve8@cdc.gov</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>nationaldppask@cdc.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Email_to_Admin_for_new_Case_in_Queue</template>
+    </alerts>
+    <alerts>
+        <fullName>New_Email_notification_sent_to_CaseOwner</fullName>
+        <description>New Email notification sent to CaseOwner</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>nationaldppask@cdc.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/New_Email_Notification_1</template>
+    </alerts>
+    <alerts>
+        <fullName>New_Email_notification_sent_to_Case_Owner</fullName>
+        <description>New Email notification sent to Case Owner</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>nationaldppask@cdc.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/New_Email_Notification_1</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_confirmation_email_of_Success_Story_Submission</fullName>
+        <description>Send confirmation email of Success Story Submission</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>nationaldppask@cdc.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>CDC_Case_Related/Success_Story_Submission</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Case_Owner_Update</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Tier1</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Case Owner Update</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>New_Email_Notification_Reset_to_False</fullName>
+        <field>New_Email_Received__c</field>
+        <literalValue>0</literalValue>
+        <name>New Email Notification Reset to False</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Open_Case_for_Case_Reason</fullName>
+        <field>Reason</field>
+        <literalValue>Open Case</literalValue>
+        <name>Open Case for Case Reason</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_to_In_Progress</fullName>
+        <description>Status changes to In Progress when</description>
+        <field>Status</field>
+        <literalValue>In Progress</literalValue>
+        <name>Status to In Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Survey_Generated_True</fullName>
+        <description>If this work flow is fired indicate that Survey is generated</description>
+        <field>Survey_Generated__c</field>
+        <literalValue>1</literalValue>
+        <name>Survey Generated True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Survey_Generated_True_1</fullName>
+        <field>Survey_Generated__c</field>
+        <literalValue>1</literalValue>
+        <name>Survey Generated True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>To_Admin_Queue</fullName>
+        <description>When a Website Support case is created, the case is automatically assigned to the Admin Queue</description>
+        <field>OwnerId</field>
+        <lookupValue>Admin_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>To Admin Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Case_RT_to_Closed</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Case_Closed</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Case RT to Closed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_New_Email_Field_to_No</fullName>
+        <field>New_Email__c</field>
+        <literalValue>No</literalValue>
+        <name>Update New Email Field to No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Referral_Survey_Generated</fullName>
+        <field>Referral_Survey_Generated__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Referral Survey Generated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Survey_Generated_True</fullName>
+        <field>Survey_Generated__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Survey Generated True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TA_Survey_Generated</fullName>
+        <field>TA_Survey_Generated__c</field>
+        <literalValue>1</literalValue>
+        <name>Update TA Survey Generated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>CDC Email Auto Response Rule</fullName>
+        <actions>
+            <name>Auto_Acknowledgment</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.SuppliedEmail</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.ContactEmail</field>
+            <operation>notEqual</operation>
+            <value>mailer-daemon@salesforce.com</value>
+        </criteriaItems>
+        <description>Using this workflow instead of Auto response rule since Email-to-Case routing addresses are the same</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Agent Assignment</fullName>
+        <actions>
+            <name>Case_Owner_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Case_In_Draft_Mode__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>notEqual</operation>
+            <value>Website Support</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Closed - Modify recordType</fullName>
+        <actions>
+            <name>Update_Case_RT_to_Closed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>When a case status is changed to Closed/Case Closed through Referral  we will place the case record into Case_Closed RT</description>
+        <formula>ISCHANGED(Status) &amp;&amp;  (ISPICKVAL(Status, &apos;Closed&apos;) ||ISPICKVAL(Status, &apos;Case Closed through Referral&apos;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Closed Survey Customer Satisfaction</fullName>
+        <active>true</active>
+        <description>A customer satisfaction Survey is sent out when Case is closed. We will also mark Survey_Generated__c =true .</description>
+        <formula>(Contact.Email !=null &amp;&amp;  Survey_Generated__c = FALSE  &amp;&amp;  ContactId !=null &amp;&amp; ISPICKVAL( Status , &apos;Closed&apos;))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Case_Closed_Survey_Customer_Satisfaction</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Survey_Generated_True</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>Update_TA_Survey_Generated</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>Case.ClosedDate</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Case Closed Survey TA Referral  Satisfaction</fullName>
+        <active>true</active>
+        <description>if the workflow evaluates to true it will send out an email to customer after 7 days to Survey</description>
+        <formula>(Contact.Email !=null &amp;&amp; Survey_Generated__c = FALSE &amp;&amp; ISPICKVAL( Status , &apos;Case Closed through Referral&apos;))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Case_Closed_Survey_TA_Referral</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Update_Referral_Survey_Generated</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>Update_Survey_Generated_True</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <timeLength>7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>New Email Notification Send to Case Owner</fullName>
+        <actions>
+            <name>New_Email_notification_sent_to_Case_Owner</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>New_Email_Notification_Reset_to_False</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.New_Email_Received__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Open Case for Case Reason</fullName>
+        <actions>
+            <name>Open_Case_for_Case_Reason</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>New,In Progress</value>
+        </criteriaItems>
+        <description>This rule ensures that cases that are New or In Progress have a Case Reason of &quot;Open Case&quot;</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Remove Email Ind when Case Closed</fullName>
+        <actions>
+            <name>Update_New_Email_Field_to_No</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Closed,Case Closed through Referral,Closed as Spam,Closed as Undeliverable Email</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.New_Email__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <description>When a case is closed the email indicator is removed and reset back to null.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send Email to Admin when Case in Admin Queue</fullName>
+        <actions>
+            <name>Email_to_Admin</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.OwnerId</field>
+            <operation>equals</operation>
+            <value>Admin Queue</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Status to In Progress</fullName>
+        <actions>
+            <name>Status_to_In_Progress</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Updates Case Status to In Progress when an agent takes on a case</description>
+        <formula>AND(ISCHANGED( OwnerId ),!ISPICKVAL ( Type, &quot;Success Story&quot;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Success Story Submission Confirmation Email</fullName>
+        <actions>
+            <name>Send_confirmation_email_of_Success_Story_Submission</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 and 2</booleanFilter>
+        <criteriaItems>
+            <field>Case.Case_In_Draft_Mode__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Success Stories</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Website Support Cases</fullName>
+        <actions>
+            <name>To_Admin_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Case_In_Draft_Mode__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Website Support</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Auto_Acknowledgment</fullName>
+        <assignedTo>CSC_Agent</assignedTo>
+        <assignedToType>role</assignedToType>
+        <description>Auto Acknowledgment has been sent. Following template has been used-  Case Autoresponse</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Case.CreatedDate</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Auto Acknowledgment Sent</subject>
+    </tasks>
+</Workflow>

@@ -1,0 +1,47 @@
+<aura:component controller="DisplayFormsThroughFieldSetController" implements="force:lightningQuickAction,force:hasRecordId,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+	<aura:attribute name="recordId" type="String" default="500r0000003KWvt" />
+    <aura:attribute name="mydata" type="Object"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <!--<aura:handler name="init" value="{! this }" action="{! c.init }"/>-->
+     <aura:attribute name="EmailMessageList" type="List" />
+     <aura:attribute name="NoOfRecordsToDisplay" type="string" default="15"/>
+    <aura:attribute name="disableLoadMoreButton" type="boolean" default="false"/>
+    <aura:attribute name="sizeofMails" type="integer" default="0"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="myTitleName" type="Aura.Component[]">
+        <h1>Related Emails ({!v.sizeofMails})</h1>
+    </aura:attribute>
+   <lightning:card >
+        <aura:set attribute="title">
+            {!v.myTitleName}
+        </aura:set>
+       
+    </lightning:card> 
+   
+  
+    <br/> 
+  <aura:if isTrue="{!(v.sizeofMails>0)}">  
+  <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+    <thead>
+      <tr class="slds-text-heading--label">
+        <th scope="col"><div class="slds-truncate" style="margin-left: 40px;" title="Subject">Subject</div></th>
+        <!--<th scope="col"><div class="slds-truncate" title="MessageDate">MessageDate</div></th>
+        <th scope="col"><div class="slds-truncate" title="textBody">textBody</div></th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Use the Apex model and controller to fetch server side data -->
+      <aura:iteration items="{!v.EmailMessageList}" var="emailMsg">
+        <tr>
+          <td><div class="slds-truncate" title="{!emailMsg.Subject}"><a  id="{!emailMsg.Id}" onclick="{!c.loadRecord}">View</a> &nbsp;&nbsp;&nbsp;{!emailMsg.Subject}</div></td>
+        <!--  <td><div class="slds-truncate" title="{!emailMsg.MessageDate}">{!emailMsg.MessageDate}</div></td>
+          <td><div class="slds-truncate" title="{!emailMsg.TextBody}">{!emailMsg.TextBody}</div></td> -->
+         </tr>
+      </aura:iteration>
+    </tbody>
+    </table>
+  </aura:if>
+
+    
+    
+</aura:component>

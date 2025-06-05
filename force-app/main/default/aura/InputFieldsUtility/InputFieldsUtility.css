@@ -1,0 +1,22 @@
+.THIS .slds-radio .slds-radio--faux  {
+    border: 1px solid rgba(138, 149, 152, 0.62);
+   
+}
+
+.THIS .slds-checkbox .slds-checkbox--faux {
+    
+    border: 1px solid rgba(138, 149, 152, 0.62);
+    
+}
+
+
+.THIS  .uiInput--input.input {
+   
+    border: 1px solid rgba(138, 149, 152, 0.62);
+    
+}
+.THIS .uiInput--textarea.textarea {
+   
+    border: 1px solid rgba(138, 149, 152, 0.62);
+    
+}

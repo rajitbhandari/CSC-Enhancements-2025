@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Covering_as_a_Benefit_Non_HHS_Link__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If the URL attached to the article is a link to a non-HHS link, this checkbox must be marked to add an icon next to the link for compliance</description>
+    <externalId>false</externalId>
+    <label>Non-HHS Link</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

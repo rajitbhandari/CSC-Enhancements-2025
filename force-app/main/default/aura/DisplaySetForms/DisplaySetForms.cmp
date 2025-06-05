@@ -1,0 +1,102 @@
+<!--
+ - Created by vPolavarapu;
+ -this componenet helps to generate forms. 
+ -->
+<aura:component controller="DisplayFormsThroughFieldSetController" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+    
+    <aura:attribute name="fieldSetName" type="String" default="" access="global" description="This will Store the field set name for Step.1"/>
+    <aura:attribute name="fieldSetName2" type="String" default="" access="global" description="This will Store the field set name for Step.2"/>
+
+    <aura:attribute name="completeWrapper" type="List" description="concat of set.1 and 2 to store review and submit fields" />
+	<aura:attribute name="FieldWrapper" type="List" description="This will Store the field set.1 related fields" />
+     <aura:attribute name="FieldWrapper2" type="List" description="This will Store the field set.2 related fields"  />
+     <aura:attribute name="AttachedFiles" type="List" description="This will Store the files uploaded"  />
+    
+    
+    <aura:attribute name="myRecordId" type="String" default="" description="Record to which the files should be attached" />
+    <aura:attribute name="recordId" type="Id" />
+
+    <aura:attribute name="StepOneLabel" type="String" description="Label to Display First Step" default="Step One" />
+	<aura:attribute name="SteptTwoLabel" type="String" description="Label to Display First Step" default="Step Two" />
+    <aura:attribute name="StepThreeLabel" type="String" description="Label to Display First Step" default="Step Three" />
+    
+    <aura:attribute name="errorMessage" type="String" />
+    <aura:attribute name="currentStep" type="string" default="1"/>
+    
+    <aura:attribute name="FinalStepComplete" type="boolean" default="false"/>
+    <aura:attribute name="Spinner" type="boolean" default="false" access="global"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+<aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    
+    <div class="slds-modal__header">
+        <!--lightning progressIndicator start-->
+        <lightning:progressIndicator currentStep="{!v.currentStep}" type="path">
+            <lightning:progressStep label="{!v.StepOneLabel}" value="1" onclick="{!c.selectFromHeaderStep1}"/>
+            <lightning:progressStep label="{!v.SteptTwoLabel}" value="2" onclick="{!c.selectFromHeaderStep2}"/>
+            <lightning:progressStep label="{!v.StepThreeLabel}" value="3" onclick="{!c.selectFromHeaderStep3}"/>
+            
+        </lightning:progressIndicator>
+    </div>
+    
+    <aura:if isTrue="{! !empty(v.errorMessage)}">
+        <ui:message severity="error" closable="false" title="Please complete below Questions:">
+            <aura:unescapedHtml value="{!v.errorMessage}"/>
+        </ui:message>
+    </aura:if>
+        
+    <div class="slds-modal__content slds-p-around--medium">       
+        <div class="{!v.currentStep == '1' ? 'slds-show' : 'slds-hide'}" style="color:red" >
+            <div>
+                <aura:iteration items="{!v.FieldWrapper}" var="item" indexVar="index"> 
+                   <c:InputFieldsUtility Question="{!item.question}" FieldLabel="{!item.question}" FieldAPIName="{!item.fieldApiName}"   isReq="{!item.isRequired }"  PicklistOptions="{!item.picklistValues}"    FieldType="{!item.fieldType}" FieldValue="{!item.Value}" /> 
+                </aura:iteration>    
+    		</div>
+        </div>
+        
+        <div class="{!v.currentStep == '2' ? 'slds-show' : 'slds-hide'}" style="color:green">
+            <aura:iteration items="{!v.FieldWrapper2}" var="item" indexVar="index"> 
+                <c:InputFieldsUtility Question="{!item.question}" FieldLabel="{!item.question}" FieldAPIName="{!item.fieldApiName}"   isReq="{!item.isRequired }"  PicklistOptions="{!item.picklistValues}"    FieldType="{!item.fieldType}" FieldValue="{!item.Value}" /> 
+            </aura:iteration> <br/>
+           	<lightning:fileUpload label="Attach Files (Optional)"
+                          name="fileUploader" 
+                          multiple="true" 
+                          
+                          recordId="{!v.myRecordId}"
+                          onuploadfinished="{!c.handleUploadFinished}" /><br/>
+            <aura:if isTrue="{! !empty(v.AttachedFiles)}">
+                <ul class="slds-has-block-links--space">
+                    <li><b>Uploaded files</b></li><br/>
+                    <aura:iteration items="{!v.AttachedFiles}" var="at" indexVar="index"> 
+                        <li>{!at.name}	- <button class="slds-button slds-button--icon-bare" id="{!at.documentId}" onclick="{!c.deleteAttach}"><lightning:icon iconName="utility:delete" size="xx-small" alternativeText="Delete Attachments"/></button></li><br/>
+                    </aura:iteration> 
+                </ul>
+            </aura:if>
+        </div>
+        
+        <div class="{!v.currentStep == '3' ? 'slds-show' : 'slds-hide'}" style="color:blue" >
+            <div>
+                <aura:iteration items="{!v.completeWrapper}" var="item" indexVar="index"> 
+                   <c:InputFieldsUtility isEditable="false" Question="{!item.question}" FieldLabel="{!item.question}" FieldAPIName="{!item.fieldApiName}"   isReq="{!item.isRequired }"  PicklistOptions="{!item.picklistValues}"    FieldType="{!item.fieldType}" FieldValue="{!item.Value}" /> 
+                </aura:iteration>    
+    		</div>
+        </div>
+        
+        <aura:if isTrue="{!v.Spinner}">
+      <lightning:spinner variant="brand" size="large"/>
+ </aura:if>
+    </div>
+      
+    <div class="slds-modal__footer slds-modal__footer_directional">
+        <aura:if isTrue="{!and( not(v.FinalStepComplete) )}">    
+      		  <button disabled="{!or(v.currentStep != '1',v.FinalStepComplete) ? '' : 'disabled'}" class="slds-button slds-button--neutral" onclick="{!c.moveBack}" >Back</button>  
+        </aura:if>
+        <aura:if isTrue="{!v.currentStep != '3'}">
+            <button class="slds-button slds-button--brand" onclick="{!c.moveNext}">Next</button>
+        </aura:if>
+        <aura:if isTrue="{!and(v.currentStep == '3', not(v.FinalStepComplete) )}">   
+            <button class="slds-button slds-button--brand" onclick="{!c.handleSubmit}">Submit</button>  
+        </aura:if>
+    </div>
+</aura:component>

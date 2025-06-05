@@ -1,0 +1,96 @@
+({
+    
+    qsToEventMap: {
+        'startURL'  : 'e.c:setStartUrl'
+    },
+
+    qsToEventMap2: {
+        'expid'  : 'e.c:setExpId'
+    },
+    
+    handleLogin: function (component, event, helpler) {
+        var username = component.find("username").get("v.value");
+        var password = component.find("password").get("v.value");
+        var action = component.get("c.login");
+        var startUrl = component.get("v.startUrl");
+        var rtnValue;
+        startUrl = decodeURIComponent(startUrl);
+        var responseval = component.get("v.response");
+        action.setParams({username:username, password:password, startUrl:startUrl,recaptchaResponse:responseval}); 
+        action.setCallback(this, function(a){
+            rtnValue = a.getReturnValue();
+            var state = a.getState();
+            if (state === "SUCCESS" && rtnValue !='Enter a value in the User Name field.' && rtnValue !='Enter a value in the Password field.' && rtnValue != 'Invalid Verification' && rtnValue !='Your login attempt has failed. Make sure the username and password are correct.') 
+            {
+                window.open(rtnValue,'_self');
+                console.log('test23');
+            }
+            else
+            {
+                component.set("v.errorMessage",rtnValue);
+                component.set("v.showError",true);
+                component.set("v.isUsernamePasswordEnabled",true);
+                console.log('test234',v.isUsernamePasswordEnabled);
+            }
+          
+        });
+        $A.getCallback(function() {
+            $A.enqueueAction(action);
+        })(); 
+        
+    },
+    
+    getIsUsernamePasswordEnabled : function (component, event, helpler) {
+        var action = component.get("c.getIsUsernamePasswordEnabled");
+        action.setCallback(this, function(a){
+        var rtnValue = a.getReturnValue();
+            if (rtnValue !== null) {
+                component.set('v.isUsernamePasswordEnabled',rtnValue);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    
+    getIsSelfRegistrationEnabled : function (component, event, helpler) {
+        var action = component.get("c.getIsSelfRegistrationEnabled");
+        action.setCallback(this, function(a){
+        var rtnValue = a.getReturnValue();
+            if (rtnValue !== null) {
+                component.set('v.isSelfRegistrationEnabled',rtnValue);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    
+    getCommunityForgotPasswordUrl : function (component, event, helpler) {
+        var action = component.get("c.getForgotPasswordUrl");
+        action.setCallback(this, function(a){
+        var rtnValue = a.getReturnValue();
+            if (rtnValue !== null) {
+                component.set('v.communityForgotPasswordUrl',rtnValue);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    
+    getCommunitySelfRegisterUrl : function (component, event, helpler) {
+        var action = component.get("c.getSelfRegistrationUrl");
+        action.setCallback(this, function(a){
+        var rtnValue = a.getReturnValue();
+            if (rtnValue !== null) {
+                component.set('v.communitySelfRegisterUrl',rtnValue);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+
+    setBrandingCookie: function (component, event, helpler) {
+        var expId = component.get("v.expid");
+        if (expId) {
+            var action = component.get("c.setExperienceId");
+            action.setParams({expId:expId});
+            action.setCallback(this, function(a){ });
+            $A.enqueueAction(action);
+        }
+    }
+})
