@@ -1,5 +1,44 @@
 <template>
-    <div class="slds-grid slds-gutters MobileView fontStyle">
+  <h2 class="headerStyle">How to Get Help</h2>
+    <div class="slds-grid slds-gutters">
+      <div class="slds-col slds-size_1-of-3">
+          <a href="#" onclick= {cscButton} class="resource-block">
+            <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
+              <img class="imgStyle" alt="DPRP Standards and Procedures" src="/resource/1660751308000/starIcon?"/>
+              <span  class="slds-text-body_small slds-hyphenate contentStyle">How to use the CSC</span>
+              <br>
+              <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
+                Material and Training resources
+              </span>
+            </div>
+          </a>
+      </div>
+      <div class="slds-col slds-size_1-of-3">
+        <a href="#" onclick= {contactSupport} class="resource-block">
+          <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
+            <img class="imgStyle" alt="NDPP PreventT2 Curricula and Handouts" src="/resource/1660751777000/checklistIcon?"/>
+            <span class="slds-text-body_small slds-hyphenate contentStyle">Technical Assistance Support</span>
+            <br>
+            <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
+                Ask an Expert
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="slds-col slds-size_1-of-3">
+        <a href="#" onclick= {discussionBoard} class="resource-block">
+          <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
+            <img class="imgStyle" alt="CDC Recognition" src="/resource/1694810658000/Health_Equity_Resources"/>
+            <span  class="slds-text-body_small slds-hyphenate contentStyle">Community Discussion Board</span>
+            <br>
+            <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
+                Post questions for the community
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!--<div class="slds-grid slds-gutters MobileView fontStyle">
         <div class="slds-m-around_xxx-small">
             <div class="slds-col slds-box tileBorder">
                     <ul class="slds-has-dividers_around-space">
@@ -60,5 +99,5 @@
                     </ul>
             </div>
         </div>
-    </div>
+    </div>-->
 </template>
