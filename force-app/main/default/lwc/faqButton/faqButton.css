@@ -1,0 +1,26 @@
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    }
+    
+    .custom-button {
+    background-color: transparent;
+    border: 2px solid rgb(32, 126, 171); /* Salesforce blue */
+    color: #07090a;
+    padding: 0px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 25px; /* Fully pill-shaped */
+    cursor: pointer;
+    height: 40px;
+    min-width: 210px;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-botton: 16px;
+    }
+
+    .custom-button:last-child{
+        margin-button: 0;
+    }
