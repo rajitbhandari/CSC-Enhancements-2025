@@ -1,0 +1,217 @@
+<template>
+    <div class="registration-form">
+        <template if:true={isStepOne}>
+            <lightning-input label="First Name" value={firstName} onchange={handleInputChange} name="firstName" required></lightning-input>
+            <lightning-input label="Last Name" value={lastName} onchange={handleInputChange} name="lastName" required></lightning-input>
+            <lightning-input label="Business Email" type="email" value={email} onchange={handleInputChange} name="email" required></lightning-input>
+            <lightning-input label="Create Password" type="password" value={password} onchange={handleInputChange} name="password" required></lightning-input>
+            <lightning-input label="Confirm Password" type="password" value={confirmPassword} onchange={handleInputChange} name="confirmPassword" required></lightning-input>
+            <lightning-input type="checkbox"
+                label="Check the box to sign-up for our Mailing List to get access to new resources, program updates, and more from the National Diabetes Prevention Program"
+                name="mailingList"
+                checked={mailingList}
+                onchange={handleInputChange}>
+            </lightning-input>
+            <div class="button-center">
+                <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
+            </div>
+            <template if:true={errorMessage}>
+                <div class="error-message">{errorMessage}</div>
+            </template>
+            <div class="progress-bar-center">
+                <c-csc-progress-bar-in-flow current-step={step} total-steps="4"></c-csc-progress-bar-in-flow>
+            </div>
+        </template>
+        <template if:true={isStepTwo}>
+            <lightning-combobox
+                name="cdcRecognized"
+                label="Do you work for an organization that is CDC-recognized or seeking recognition?"
+                value={cdcRecognized}
+                options={cdcOptions}
+                onchange={handleInputChange}
+                required>
+            </lightning-combobox>
+            <div class="button-center">
+                <lightning-button label="Next" variant="brand" onclick={handleNextStepTwo}></lightning-button>
+            </div>
+            <div class="button-center">
+                <lightning-button label="Back" onclick={handleBack} class="slds-m-bottom_small"></lightning-button>
+                
+            </div>
+            <template if:true={errorMessage}>
+                <div class="error-message">{errorMessage}</div>
+            </template>
+            <div class="progress-bar-center">
+                <c-csc-progress-bar-in-flow current-step={step} total-steps="4"></c-csc-progress-bar-in-flow>
+            </div>
+        </template>
+        <template if:true={isStepThree}>
+            <h3 class="center-bold">Tell us about the organization</h3>
+            <!--<lightning-input label="Organization Name" value={organizationName} onchange={handleInputChange} name="organizationName" required></lightning-input>-->
+            <!-- new code start-->
+             <div class="slds-form-element">
+
+    <div class="slds-form-element__control">
+        <lightning-input
+            type="text"
+            name="accountLookup"
+            label="Organization Name"
+            value={accountSearchTerm}
+            onchange={handleAccountSearchChange}
+            placeholder="Search Accounts"
+            autocomplete="off"
+            required>
+        </lightning-input>
+        <template if:true={showAccountResults}>
+            <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid" role="listbox">
+                <template for:each={accountResults} for:item="account">
+                    <li key={account.SObjectId} role="presentation" class="slds-listbox__item"
+                        onclick={handleAccountSelect}
+                        data-id={account.SObjectId}
+                        data-name={account.SObjectLabel}>
+                        <div class="slds-listbox__option slds-listbox__option_plain" role="option">
+                            {account.SObjectLabel}
+                        </div>
+                    </li>
+                </template>
+                <template if:true={noAccountResults}>
+                    <li class="slds-listbox__item">
+                        <div class="slds-listbox__option slds-listbox__option_plain" role="option">
+                            No results found
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </template>
+                <template if:true={selectedAccountName}>
+            <div class="slds-text-color_success slds-m-top_x-small">
+                Selected: {selectedAccountName}
+            </div>
+        </template>
+        <template if:true={showManualEntry}>
+            <lightning-input
+                label="Enter Organization Name"
+                name="organizationName"
+                value={organizationName}
+                onchange={handleInputChange}
+                required>
+            </lightning-input>
+        </template>
+    </div>
+</div>
+             <!-- new code end-->
+            <lightning-combobox
+                name="organizationType"
+                label="Organization Type"
+                value={organizationType}
+                options={organizationTypeOptions}
+                onchange={handleInputChange}
+                disabled={organizationTypeReadOnly}>
+            </lightning-combobox>
+            <template if:true={showOtherOrgType}>
+                <lightning-input
+                    label="Please Specify if Organization Type is Other"
+                    name="otherOrgType"
+                    value={otherOrgType}
+                    onchange={handleInputChange}
+                    required>
+                </lightning-input>
+            </template>
+            <!--<lightning-input label="Zip Code" value={zipCode} onchange={handleInputChange} name="zipCode" type="number" min="0" max="99999" required></lightning-input>-->
+            <lightning-input
+                    label="Zip Code"
+                    value={zipCode}
+                    onchange={handleZipCodeChange}
+                    name="zipCode"
+                    type="text"
+                    maxlength="5"
+                    required
+                    disabled={organizationTypeReadOnly}>
+            </lightning-input>
+            <lightning-combobox
+                name="orgCdcRecognized"
+                label="Is your organization CDC recognized? (i.e., Pending, Preliminary, Full, or Full Plus)"
+                value={orgCdcRecognized}
+                options={cdcOptions}
+                onchange={handleInputChange}
+                disabled={organizationTypeReadOnly}>
+            </lightning-combobox>
+                <template if:true={showOrgCode}>
+                <lightning-input
+                    label="Organization Code"
+                    name="organizationCode"
+                    value={organizationCode}
+                    onchange={handleInputChange}
+                    required
+                    disabled={organizationTypeReadOnly}>
+                </lightning-input>
+            </template>
+            <div class="button-center">
+                <lightning-button label="Register" variant="brand" onclick={handleRegister}></lightning-button>
+            </div>
+            <div class="button-center">
+                <lightning-button label="Back" onclick={handleBackStepThree} class="slds-m-bottom_small"></lightning-button>
+                
+            </div>
+            <template if:true={errorMessage}>
+                <div class="error-message">{errorMessage}</div>
+            </template>
+            <div class="progress-bar-center">
+                <c-csc-progress-bar-in-flow current-step={step} total-steps="4"></c-csc-progress-bar-in-flow>
+            </div>
+        </template>
+        <template if:true={isStepFour}>
+            <div class="congrats-message">
+                <h2 class="congrats-header">Congrats {lastName}!</h2>
+                <div class="congrats-subheader">You're All Set.</div>
+                <div class="congrats-detail">Your registration is complete</div>
+            </div>
+ <!--The new tile section begin-->           
+    <div class="slds-grid slds-gutters">
+      <div class="slds-col slds-size_1-of-3">
+          <a href="#" onclick= {cscButton} class="resource-block">
+            <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
+              <img class="imgStyle" alt="DPRP Standards and Procedures" src="/resource/1660751308000/starIcon?"/>
+              <span  class="slds-text-body_small slds-hyphenate contentStyle">View the national DPP Welcome Guide</span>
+              <br>
+              <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
+                Get started with guigance tool and requirement
+              </span>
+            </div>
+          </a>
+      </div>
+      <div class="slds-col slds-size_1-of-3">
+        <a href="#" onclick= {contactSupport} class="resource-block">
+          <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
+            <img class="imgStyle" alt="NDPP PreventT2 Curricula and Handouts" src="/resource/1660751777000/checklistIcon?"/>
+            <span class="slds-text-body_small slds-hyphenate contentStyle">Explore Resources</span>
+            <br>
+            <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
+                Explore research-backend resources and articles
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="slds-col slds-size_1-of-3">
+        <a href="#" class="resource-block">
+          <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
+            <img class="imgStyle" alt="CDC Recognition" src="/resource/1694810658000/Health_Equity_Resources"/>
+            <span  class="slds-text-body_small slds-hyphenate contentStyle">Join the Community Discussion Board</span>
+            <br>
+            <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
+                Connect and engage with other National DPP organizations
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+ <!--The new tile section end-->  
+            <div class="button-center">
+                <lightning-button label="Go to Home" variant="brand" onclick={goToHome}></lightning-button>
+            </div>
+            <div class="progress-bar-center">
+                <c-csc-progress-bar-in-flow current-step="5" total-steps="4"></c-csc-progress-bar-in-flow>
+            </div>
+        </template>
+    </div>
+</template>

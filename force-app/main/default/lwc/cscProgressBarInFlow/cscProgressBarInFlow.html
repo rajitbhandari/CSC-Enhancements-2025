@@ -1,0 +1,7 @@
+<template>
+    <div class="blocks-container">
+        <template for:each={blockList} for:item="block">
+            <div key={block.blockNum} class={block.blockClass}></div>
+        </template>
+    </div>
+</template>

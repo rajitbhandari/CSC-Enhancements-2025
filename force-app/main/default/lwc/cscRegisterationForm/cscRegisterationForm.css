@@ -1,0 +1,155 @@
+.registration-form {
+    max-width: 1200px;   /* Increased from 1000px */
+    margin: 0 auto;
+    padding: 48px;       /* Increased from 32px */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.error-message {
+    color: #c00;
+    margin-top: 12px;
+}
+.progress-bar-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+
+.congrats-message {
+    text-align: center;
+    margin-top: 40px;
+}
+.congrats-header {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.congrats-subheader {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+}
+.congrats-detail {
+    color: #888;
+    font-size: 0.95rem;
+    margin-top: 4px;
+    font-weight: normal;
+}
+/* Progress bar styles */
+@media (max-width: 768px) {
+    .MobileView {
+     display:grid;
+    }
+  }
+  .tileBorder {
+  border: 1px solid; 
+  border-top: 5px solid #1565C0;/* #00695C;*/
+  border-radius: 16px;
+  }
+  .tileButton {
+    font-size:20px; 
+    color: rgb(255,255,255); 
+    height: 62px;
+    width: 223px;
+    background-color: #1976D2; /* new changes;*/
+    border-radius: 12px; /* new changes;*/
+  }
+  .tileImg {
+    width:280px; 
+    height:154px;
+  }
+  .fontStyle{
+    font-family: "Open Sans", sans-serif;
+  }
+  .tileButton:hover{
+    background-color:#0D47A1; /*rgb(2, 73, 45);  */
+    border: 3px solid black;
+  }
+  .headerStyle{
+    font-weight: 1000; 
+    /*text-align:center;*/ 
+    text-align: left; /* Changed from center to left */
+    font-size: 15pt; 
+    /*color: rgb(0, 134, 75);*/
+    color: rgb(10, 10, 10); /* Changed to blue */
+}
+  /* new changes*/
+.hyperlinkStyle{
+    color: rgb(0, 0, 0);
+    text-decoration: none !important; 
+    font-weight: 300;
+}
+.hyperlinkStyle:hover{
+    color: rgb(13, 106, 153);
+    text-decoration: none !important; 
+    font-weight: 300;
+}
+
+a:hover{
+    color: rgb(46, 125, 143);
+    text-decoration: none;
+    font-weight: 300;
+}
+.center-bold {
+    font-weight: bold;
+    text-align: center;
+}
+
+.headerStyle{
+    font-weight: 1000; 
+    /*text-align:center;*/ 
+    text-align: left; /* Changed from center to left */
+    font-size: 15pt; 
+    /*color: rgb(0, 134, 75);*/
+    color: rgb(10, 10, 10); /* Changed to blue */
+}
+.imgStyle{
+    padding-bottom: 4px; 
+    width: 30px;
+}
+.contentStyle{
+    padding-left:5px;
+    font-weight:600;
+}
+.grayText {
+    color: #999999;
+}
+.resource-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(69, 76, 83, 0.08);
+  padding: 20px 16px;
+  margin: 16px 0;
+  min-height: 110px;
+  transition: box-shadow 0.2s;
+  text-decoration: none !important;
+}
+
+.registration-form lightning-button button,
+.button-center lightning-button button {
+    border-radius: 999px !important;
+    min-width: 220px;
+    font-size: 1.1rem;
+    padding: 14px 0;
+    font-weight: 600;
+}
+.button-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px; /* space between buttons */
+    margin-top: 20px;
+}
+
+/* scroll new  styles */
+.slds-listbox.slds-listbox_vertical.slds-dropdown {
+    max-height: 200px; /* Adjust as needed */
+    overflow-y: auto;
+}

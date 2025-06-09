@@ -1,0 +1,25 @@
+.blocks-container {
+    display: flex;
+    flex-direction: row;      /* Stack blocks horizontally */
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 16px;                /* Add space between blocks */
+}
+
+.block {
+    width: 120px;
+    height: 14px;
+    background: #e0e0e0; /* gray by default */
+    border-radius: 12px;  /* Curved edges for rectangle */
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.block.completed {
+    background: #1589ee !important; /* blue for completed */
+}
+.block.active {
+    background: #34c759 !important; /* green for active */
+}
