@@ -1,4 +1,61 @@
 .headerCarousel{
+    justify-content: flex-start;
     font-size: 20px;
     font-family: "Open Sans", sans-serif;
+}
+.whats-new-container {
+padding: 2rem;
+background: #e3f2fd; /* very light sky blue */
+margin: 1rem 0;
+}
+.section-title {
+font-size: 1.5rem;
+font-weight: bold;
+margin-bottom: 1rem;
+color: #000307;
+}
+.tile-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 2rem;
+justify-content: flex-start;
+}
+
+.tile {
+background-color: #ffffff; /* light blue background */
+border-radius: 4px;
+padding: 1rem;
+width: 100%;
+max-width: 200px;
+box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tile-heading {
+font-size: 1.2rem;
+font-weight: bold;
+color: #ebedf0;
+margin-bottom: 0.5rem;
+}
+
+.tile-description {
+font-size: 0.95rem;
+color: #444;
+margin-bottom: 1rem;
+}
+
+.tile-button {
+background-color: #0070d2;
+color: white;
+border: none;
+border-radius: 5px;
+padding: 0.5rem 1rem;
+font-weight: bold;
+cursor: pointer;
+}
+
+.tile-button:hover {
+background-color: #005fb2;
+}
+.tile:nth-of-type(1){
+    margin-right: 20px;
 }

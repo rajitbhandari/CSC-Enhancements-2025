@@ -5,10 +5,10 @@
             <div class="cta-btn askCommunityButton stylingOverrideHook_5510" style="margin-top:0px;">
                 <button 
                         id="upcomingEvents"
-                        class="askCommunityBtn slds-button forceCommunityAskCommunity"  
+                        class="askCommunityBtn slds-button  slds-button_brand forceCommunityAskCommunity"  
                         data-aura-class="forceCommunityAskCommunity"
                         onclick="{!c.eventsCalendar}"
-                        style="margin:0 auto; border-radius:0px;"
+                       style="margin:0 auto; border-radius:30px; background:white; color:rgb(35, 35, 47); border:2px solid rgb(32, 126, 171); padding:10px 20px;"
                         >View Upcoming Events</button>
             </div>
         </div>

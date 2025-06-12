@@ -1,2 +1,5 @@
-.THIS {
+.THIS .slds-button:hover {
+background-color: rgb(24, 94, 128) !important;
+color: white !important;
+border-color: rgb(32, 126, 171) !important;
 }
