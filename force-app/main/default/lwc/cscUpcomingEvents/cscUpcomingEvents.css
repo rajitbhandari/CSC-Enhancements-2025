@@ -1,0 +1,49 @@
+.transparent-card {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.upcoming-events-title {
+    font-weight: bold;
+    color: #6b6b6b;
+    margin: 0 0 1rem 0.95rem;
+    font-size: 1.1rem;
+}
+
+.event-subject {
+    font-weight: bold;
+    color: #222;
+    font-size: 1.1rem;
+    margin-bottom: 0.15rem;
+    display: block;
+}
+
+.event-date-bold {
+    font-weight: bold;
+    color: #646262;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+}
+
+.event-time-light {
+    font-weight:600;
+    color: #a3a1a1;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+}
+
+.event-description {
+    font-weight:600;
+    color: #a3a1a1;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem; /* Add spacing above description */
+}
+
+.upcoming-events-list {
+    max-height: 30rem; /* Adjust height as needed for 5 events */
+    overflow-y: auto;
+}

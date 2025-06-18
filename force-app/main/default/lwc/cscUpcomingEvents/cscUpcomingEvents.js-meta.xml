@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="noOfWeeksBefore" type="Integer" label="Number of Weeks Before" description="How many weeks before today to include events from." />
+            <property name="noOfWeeksAfter" type="Integer" label="Number of Weeks After" description="How many weeks after today to include events until." />
+            <property name="showSearchBar" type="Boolean" label="Show Search Bar" default="false" description="Show or hide the search bar for events."/>
+            <property name="showNextUpcomingOnly" type="Boolean" label="Show Only Next Upcoming Event" default="false" description="If checked, only the next upcoming event will be shown."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
