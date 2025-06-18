@@ -34,17 +34,10 @@ export default class CscUpcomingEvents extends LightningElement {
         end.setHours(23,59,59,999);
         this.startDate = start.toISOString();
         this.endDate = end.toISOString();
-        // Debug statements
-        // eslint-disable-next-line no-console
-        console.log('DEBUG: startDate (range):', this.startDate);
-        // eslint-disable-next-line no-console
-        console.log('DEBUG: endDate (range):', this.endDate);
     }
 
     fetchEvents() {
         const subjectParam = this.subjectFilter && this.subjectFilter.trim() !== '' ? this.subjectFilter : undefined;
-        // Debug: log parameters being sent to Apex
-        // eslint-disable-next-line no-console
         console.log('DEBUG: Calling getUpcomingEvents with:', {
             startDate: this.startDate,
             endDate: this.endDate,
