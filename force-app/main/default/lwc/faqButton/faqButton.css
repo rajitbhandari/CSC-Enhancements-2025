@@ -5,9 +5,9 @@
     }
     
     .custom-button {
-    background-color: transparent;
-    border: 2px solid hsl(199, 68%, 40%); /* Salesforce blue */
-    color: rgb(35, 35, 47);
+    background-color: #14616e;
+    border: 2px solid #14616e; /* Salesforce blue */
+    color: rgb(255, 255, 255);
     padding: 0px 24px;
     font-size: 14px;
     font-weight: 500;
@@ -25,6 +25,6 @@
         margin-button: 0;
     }
     .custom-button:hover{
-        background-color: rgb(24, 94, 128);
+        background-color: #14616e;
         color:white;
     }

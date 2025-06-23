@@ -8,7 +8,7 @@
                         class="askCommunityBtn slds-button  slds-button_brand forceCommunityAskCommunity"  
                         data-aura-class="forceCommunityAskCommunity"
                         onclick="{!c.eventsCalendar}"
-                       style="margin:0 auto; border-radius:30px; background:white; color:rgb(35, 35, 47); border:2px solid rgb(32, 126, 171); padding:10px 20px;"
+                       style="margin:0 auto; border-radius:30px; background:#14616e; color:rgb(255, 255, 255); border:2px solid ; padding:10px 20px;"
                         >View Upcoming Events</button>
             </div>
         </div>

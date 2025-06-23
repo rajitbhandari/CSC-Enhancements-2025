@@ -90,15 +90,15 @@
       
     <div class="slds-modal__footer slds-modal__footer_directional">
         <aura:if isTrue="{!and( not(v.FinalStepComplete) )}">    
-      		  <button disabled="{!or(v.currentStep != '1',v.FinalStepComplete) ? '' : 'disabled'}" class="slds-button slds-button--neutral" onclick="{!c.moveBack}"  style="margin:0 auto; border-radius:50px; background:white; color:rgb(35, 35, 47); border:2px solid
-             rgb(32, 126, 171); padding:10px 30px;"> Back</button>
+      		  <button disabled="{!or(v.currentStep != '1',v.FinalStepComplete) ? '' : 'disabled'}" class="slds-button slds-button--neutral" onclick="{!c.moveBack}"  style="margin:0 auto; border-radius: 27px;; background:#14616e; color:rgb(255, 255, 255); border:2px solid;
+              padding: 0px 26px;"> Back</button>
         </aura:if>
         <aura:if isTrue="{!v.currentStep != '3'}">
-            <button class="slds-button slds-button--brand"  onclick="{!c.moveNext}" style="margin:0 auto; border-radius:50px; background:white; color:rgb(35, 35, 47); border:2px solid
-             rgb(32, 126, 171); padding:10px 30px;"> Next</button>
+            <button class="slds-button slds-button--brand"  onclick="{!c.moveNext}" style="margin:0 auto; border-radius: 27px; background:#14616e; color:rgb(255, 255, 255); border:2px solid;
+             background:#14616e; padding: 0px 26px;"> Next</button>
         </aura:if>
         <aura:if isTrue="{!and(v.currentStep == '3', not(v.FinalStepComplete) )}" >
-            <button class="slds-button slds-button--brand"  onclick="{!c.handleSubmit}" style="margin:0 auto; border-radius:50px; background:white; color:rgb(35, 35, 47); border:2px solid rgb(32, 126, 171); padding:10px 30px;">Submit</button>  
+            <button class="slds-button slds-button--brand"  onclick="{!c.handleSubmit}" style="margin:0 auto; border-radius: 27px; background:#14616e; color:rgb(255, 255, 255); border:2px;background:#14616e; padding: 0px 26px;">Submit</button>  
         </aura:if>
     </div>
 </aura:component>
