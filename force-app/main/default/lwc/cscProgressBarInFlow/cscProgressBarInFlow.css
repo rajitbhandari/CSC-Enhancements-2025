@@ -23,3 +23,15 @@
 .block.active {
     background: #34c759 !important; /* green for active */
 }
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .blocks-container {
+        gap: 8px;
+    }
+    .block {
+        width: 60px;
+        height: 12px;
+        font-size: 0.8rem;
+    }
+}

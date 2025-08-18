@@ -26,6 +26,7 @@
     font-weight: bold;
     text-align: center;
     margin-bottom: 10px;
+    font-size: 1rem;
 }
 .congrats-subheader {
     font-weight: bold;
@@ -54,7 +55,7 @@
     color: rgb(255,255,255); 
     height: 62px;
     width: 223px;
-    background-color: #1976D2; /* new changes;*/
+    background-color: #0057b7;
     border-radius: 12px; /* new changes;*/
   }
   .tileImg {
@@ -65,7 +66,7 @@
     font-family: "Open Sans", sans-serif;
   }
   .tileButton:hover{
-    background-color:#0D47A1; /*rgb(2, 73, 45);  */
+    background-color:#0057b7;
     border: 3px solid black;
   }
   .headerStyle{
@@ -111,7 +112,7 @@ a:hover{
     width: 30px;
 }
 .contentStyle{
-    padding-left:5px;
+    padding-left:1px;
     font-weight:600;
 }
 .grayText {
@@ -123,12 +124,13 @@ a:hover{
   align-items: flex-start;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(69, 76, 83, 0.08);
+  box-shadow: 0 15px 8px rgba(69, 76, 83, 0.08);
   padding: 20px 16px;
   margin: 16px 0;
-  min-height: 110px;
+  min-height: 160px;
   transition: box-shadow 0.2s;
   text-decoration: none !important;
+  Border: 1px solid gray;
 }
 
 .registration-form lightning-button button,
@@ -138,6 +140,7 @@ a:hover{
     font-size: 1.1rem;
     padding: 14px 0;
     font-weight: 600;
+    
 }
 .button-center {
     display: flex;
@@ -153,3 +156,34 @@ a:hover{
     max-height: 200px; /* Adjust as needed */
     overflow-y: auto;
 }
+.registration-heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem; /* Optional: make it larger */
+    margin-bottom: 1rem;
+}
+.registration-banner {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 16px auto;
+}
+
+.button-container {
+display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left; 
+    margin-top: 20px;
+    }
+    .custom-button {
+         background-color: #0057b7;
+         color: #ffffff;
+         padding: 8px 12px;
+         border: none;
+         border-radius: 25px;
+         font-size: 13px;
+         margin-left: 0;
+         -webkit-mask-image: linear-gradient(40deg, black 80%, transparent 100%);
+         mask-image: linear-gradient(2deg, black 60%, transparent 100%);
+    }

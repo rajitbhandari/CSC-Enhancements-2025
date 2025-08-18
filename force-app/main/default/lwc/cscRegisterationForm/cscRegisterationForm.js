@@ -12,6 +12,11 @@ export default class CscRegisterationForm extends LightningElement {
     @track step = 1;
     @track firstName = '';
     @track lastName = '';
+
+    get lastNameCapitalized() {
+        if (!this.lastName) return '';
+        return this.lastName.charAt(0).toUpperCase() + this.lastName.slice(1);
+    }
     @track email = '';
     @track password = '';
     @track confirmPassword = '';
@@ -26,6 +31,7 @@ export default class CscRegisterationForm extends LightningElement {
     @track organizationCode = '';
     @track otherOrgType = '';
     @api regConfirmUrl; 
+    showBox = false;
 
     /**/ 
     accountSearchTerm = '';
@@ -36,6 +42,23 @@ export default class CscRegisterationForm extends LightningElement {
     noAccountResults = false;
     showManualEntry = false; // <-- Track manual entry mode
 
+    toggleBox() {
+        this.showBox = true;
+    }
+
+    handleSubscribeClick() {
+        window.location.href = 'https://tools.cdc.gov/campaignproxyservice/subscriptions.aspx';
+    }
+
+    handlemanageSubscribeClick() {
+        window.location.href = 'https://tools.cdc.gov/campaignproxyservice/subscriptions.aspx?topic_id=USCDC_2110';
+
+    }
+    
+    hideModalBox() {
+       
+        this.showBox = false;
+    }
 
 handleAccountSearchChange(event) {
     this.accountSearchTerm = event.target.value;
@@ -189,8 +212,17 @@ handleAccountSearchChange(event) {
                 !this.password ||
                 !this.confirmPassword
             ) {
-            this.errorMessage = 'Please fill in all required fields.';
-            return;
+                this.errorMessage = 'Please fill in all required fields.';
+                return;
+            }
+            // Validate first name and last name: only alphabets
+            if (!/^[A-Za-z]+$/.test(this.firstName)) {
+                this.errorMessage = 'First Name should contain only alphabets.';
+                return;
+            }
+            if (!/^[A-Za-z]+$/.test(this.lastName)) {
+                this.errorMessage = 'Last Name should contain only alphabets.';
+                return;
             }
             if (this.password !== this.confirmPassword) {
                 this.errorMessage = 'Password and Confirm Password do not match.';
@@ -205,8 +237,8 @@ handleAccountSearchChange(event) {
                 this.errorMessage = 'Password must be at least 8 characters and contain both letters and numbers.';
                 return;
             }
-        this.errorMessage = '';
-        this.step = 2;
+            this.errorMessage = '';
+            this.step = 2;
         }
     }
 
@@ -227,57 +259,114 @@ handleAccountSearchChange(event) {
         this.step = 2;
     }
 
-    handleRegister() {
-    if (
-        !this.selectedAccountId ||
-        !this.zipCode ||
-        (this.orgCdcRecognized === 'Yes' && !this.organizationCode) ||
-        (this.organizationType === 'Other' && !this.otherOrgType)
-    ) {
-        this.errorMessage = 'Please complete all organization details.';
-        return;
-    }
-    this.errorMessage = '';
-
-    const userDetails = {
-        FirstName: this.firstName,
-        LastName: this.lastName,
-        Email: this.email,
-        CompanyName: this.organizationName,
-        CDC_User_Profile_Type__c: this.organizationType,
-        Zip_Code__c: this.zipCode,
-        CDC_Recognized_org__c: this.orgCdcRecognized,
-        Org_Code__c: this.organizationCode
-    };
-
-    selfRegister({
-        userDetails: userDetails,
-        otherOrgType: this.otherOrgType,
-        password: this.password,
-        confirmPassword: this.confirmPassword,
-        accountId: this.selectedAccountId,
-        regConfirmUrl: this.regConfirmUrl, // <-- Use the attribute here
-        extraFields: '',
-        startUrl: '',
-        includePassword: true,
-        recaptchaResponse: this.recaptchaToken
-    })
-    .then(result => {
-        if (result && result.startsWith('Invalid')) {
-            this.errorMessage = result;
+    // Add event-driven reCAPTCHA logic
+    handleRecaptchaVerified = (event) => {
+        console.debug('grecaptchaVerified event received:', event);
+        // Support both .token and .response for compatibility with global handler
+        const token = event.detail.token || event.detail.response;
+        console.debug('token', token);
+        this.recaptchaToken = token;
+        if (this.recaptchaToken) {
+            console.debug('reCAPTCHA token received:', this.recaptchaToken);
         } else {
-            this.step = 4;  //temp comment, to be reverted later
-            //this.errorMessage = result;
+            console.error('No reCAPTCHA token received!');
         }
-    })
-    .catch(error => {
-        this.errorMessage = error.body ? error.body.message : error.message;
-    });
-}
+        // After receiving the token, proceed with registration
+        this.doSelfRegister();
+    }
+
+    connectedCallback() {
+        document.addEventListener("grecaptchaVerified", this.handleRecaptchaVerified);
+    }
+    disconnectedCallback() {
+        document.removeEventListener("grecaptchaVerified", this.handleRecaptchaVerified);
+    }
+
+    handleRegister() {
+        const missingFields = [];
+        if (!this.selectedAccountId && !this.organizationName) missingFields.push('Organization');
+        if (!this.zipCode) missingFields.push('Zip Code');
+        if (this.orgCdcRecognized === 'Yes') {
+            if (!this.organizationCode) {
+                missingFields.push('Organization Code');
+            } else {
+                // Validate organization code: must be numeric and 6 digits
+                if (!/^\d{6}$/.test(this.organizationCode)) {
+                    this.errorMessage = 'Organization Code must be a 6-digit number.';
+                    return;
+                }
+            }
+        }
+        if (this.organizationType === 'Other' && !this.otherOrgType) missingFields.push('Other Organization Type');
+        if (missingFields.length > 0) {
+            this.errorMessage = `Please complete all organization details. (${missingFields.join(', ')})`;
+            return;
+        }
+        this.errorMessage = '';
+        // Dispatch event to trigger reCAPTCHA globally
+        document.dispatchEvent(new CustomEvent("grecaptchaExecute", { detail: { action: "register" } }));
+    }
+
+    doSelfRegister() {
+        const userDetails = {
+            FirstName: this.firstName,
+            LastName: this.lastName,
+            Email: this.email,
+            CompanyName: this.organizationName,
+            CDC_User_Profile_Type__c: this.organizationType,
+            Zip_Code__c: this.zipCode,
+            CDC_Recognized_org__c: this.orgCdcRecognized,
+            Org_Code__c: this.organizationCode
+        };
+        // ++Debug output for userDetails and selfRegister params
+        console.log('User Details:', JSON.stringify(userDetails));
+        console.log('AccountId being passed:', this.selectedAccountId);
+        console.log('SelfRegister Params:', JSON.stringify({
+            userDetails: userDetails,
+            otherOrgType: this.otherOrgType,
+            password: this.password,
+            confirmPassword: this.confirmPassword,
+            accountId: this.selectedAccountId,
+            regConfirmUrl: this.regConfirmUrl,
+            extraFields: '',
+            startUrl: '',
+            includePassword: true,
+            recaptchaResponse: this.recaptchaToken
+        })); // -- Debug output for userDetails and selfRegister params
+        selfRegister({
+            userDetails: userDetails,
+            otherOrgType: this.otherOrgType,
+            password: this.password,
+            confirmPassword: this.confirmPassword,
+            accountId: this.selectedAccountId,
+            regConfirmUrl: this.regConfirmUrl,
+            extraFields: '',
+            startUrl: '',
+            includePassword: true,
+            recaptchaResponse: this.recaptchaToken
+        })
+        .then(result => {
+            if (result && result.startsWith('Invalid')) {
+                this.errorMessage = result;
+            } else {
+                this.step = 4;
+            }
+        })
+        .catch(error => {
+            this.errorMessage = error.body ? error.body.message : error.message;
+        });
+    }
 
     goToHome() {
         window.location.href = '/'; // Change this to your community home URL if needed
     }
+
+    subscribeCscEmails() 
+    {
+        // Opens the CDC subscription page in a new tab
+        window.open('https://tools.cdc.gov/campaignproxyservice/subscriptions.aspx', '_blank');
+    }
+
 
     cscButton(event){
         window.open(window.location.href.substring(0,

@@ -1,17 +1,12 @@
 <template>
     <div class="registration-form">
+        <h1 class="registration-heading">Customer Service Center (CSC) Registration Form </h1>
         <template if:true={isStepOne}>
             <lightning-input label="First Name" value={firstName} onchange={handleInputChange} name="firstName" required></lightning-input>
             <lightning-input label="Last Name" value={lastName} onchange={handleInputChange} name="lastName" required></lightning-input>
             <lightning-input label="Business Email" type="email" value={email} onchange={handleInputChange} name="email" required></lightning-input>
             <lightning-input label="Create Password" type="password" value={password} onchange={handleInputChange} name="password" required></lightning-input>
             <lightning-input label="Confirm Password" type="password" value={confirmPassword} onchange={handleInputChange} name="confirmPassword" required></lightning-input>
-            <lightning-input type="checkbox"
-                label="Check the box to sign-up for our Mailing List to get access to new resources, program updates, and more from the National Diabetes Prevention Program"
-                name="mailingList"
-                checked={mailingList}
-                onchange={handleInputChange}>
-            </lightning-input>
             <div class="button-center">
                 <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
             </div>
@@ -162,7 +157,7 @@
         </template>
         <template if:true={isStepFour}>
             <div class="congrats-message">
-                <h2 class="congrats-header">Congrats {lastName}!</h2>
+                <h2 class="congrats-header">Congrats {lastNameCapitalized}!</h2>
                 <div class="congrats-subheader">You're All Set.</div>
                 <div class="congrats-detail">Your registration is complete</div>
             </div>
@@ -171,11 +166,11 @@
       <div class="slds-col slds-size_1-of-3">
           <a href="#" onclick= {cscButton} class="resource-block">
             <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
-              <img class="imgStyle" alt="DPRP Standards and Procedures" src="/resource/1660751308000/starIcon?"/>
-              <span  class="slds-text-body_small slds-hyphenate contentStyle">View the national DPP Welcome Guide</span>
+              <img class="imgStyle" alt="DPRP Standards and Procedures" src="/resource/1753118566000/starIcon?"/>
+              <span  class="slds-text-body_small slds-hyphenate contentStyle"> View the National DPP Welcome Guide</span>
               <br>
               <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
-                Get started with guigance tool and requirement
+                Get started with guidance, tools, and <br>requirements for delivering the National DPP lifestyle change program
               </span>
             </div>
           </a>
@@ -183,35 +178,75 @@
       <div class="slds-col slds-size_1-of-3">
         <a href="#" onclick= {contactSupport} class="resource-block">
           <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
-            <img class="imgStyle" alt="NDPP PreventT2 Curricula and Handouts" src="/resource/1660751777000/checklistIcon?"/>
-            <span class="slds-text-body_small slds-hyphenate contentStyle">Explore Resources</span>
+            <img class="imgStyle" alt="NDPP PreventT2 Curricula and Handouts" src="/resource/1753384634000/Health_Equilty_Resources_updated?"/>
+            <span class="slds-text-body_small slds-hyphenate contentStyle"> Explore Resources</span>
             <br>
             <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
-                Explore research-backend resources and articles
+                Explore research-backed resources and articles
             </span>
+            <br>
           </div>
         </a>
       </div>
       <div class="slds-col slds-size_1-of-3">
         <a href="#" class="resource-block">
           <div class="hyperlinkStyle slds-p-top_medium slds-p-bottom_medium slds-col slds-border_bottom slds-hyphenate">
-            <img class="imgStyle" alt="CDC Recognition" src="/resource/1694810658000/Health_Equity_Resources"/>
-            <span  class="slds-text-body_small slds-hyphenate contentStyle">Join the Community Discussion Board</span>
+            <img class="imgStyle" alt="CDC Recognition" src="/resource/1753124702000/Health_Equity_Resources?"/>
+            <span  class="slds-text-body_small slds-hyphenate contentStyle"> Join the Community Discussion Board</span>
             <br>
             <span class="slds-text-body_small slds-hyphenate contentStyle grayText">
                 Connect and engage with other National DPP organizations
             </span>
+            <br>
           </div>
         </a>
       </div>
     </div>
- <!--The new tile section end-->  
+ <!--The new tile section end--> 
+            <div class="button-center">
+                <lightning-button label="Sign Up for CSC Emails" variant="brand" onclick={toggleBox}></lightning-button>
+            </div>
             <div class="button-center">
                 <lightning-button label="Go to Home" variant="brand" onclick={goToHome}></lightning-button>
             </div>
             <div class="progress-bar-center">
                 <c-csc-progress-bar-in-flow current-step="5" total-steps="4"></c-csc-progress-bar-in-flow>
             </div>
+    <!-- modal-popup start -->
+    <template if:true={showBox}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <b> <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Get the Latest Updates</h2></b>
+                </header>
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p>
+                        <b>To sign up for CSC emails:</b><br></br>Click on the subscribe button below -->Enter your Email Address and click “Register”-->To complete your subscription sign-up, please check your email inbox for a confirmation request. Click the link in the email and then follow the instructions to accept your pending subscription for “The National Diabetes Prevention Program Customer Service Center”.
+                    </br><br><button class="custom-button" onclick={handleSubscribeClick}>
+                            Subscribe
+                        </button></br>
+                        <br>
+                        <b>To manage your existing subscriptions, click on the Manage Subscriptions button below:</b></br></br>
+                    <button class="custom-button" onclick={handlemanageSubscribeClick}>
+                        Manage Subscriptions
+                        </button>
+                    <br/>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <!-- modal-popup ends -->
         </template>
     </div>
 </template>
