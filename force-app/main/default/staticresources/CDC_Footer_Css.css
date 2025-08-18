@@ -8307,7 +8307,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  content: "•";
+  content: "ï¿½";
   width: 20px;
   height: 20px;
   font-size: 6px;
@@ -9240,7 +9240,7 @@
   padding-bottom: 1rem;
   margin-top: 1rem;
   color: #fff;
-  background-color: #333333;
+  background-color: #0057b7;
 }
 .cdcFooter footer .footer-wrapper span {
   display: block;
