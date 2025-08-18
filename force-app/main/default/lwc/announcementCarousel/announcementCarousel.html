@@ -1,23 +1,40 @@
 <template>
-    <div style="border:1px solid;">
-<lightning-card>
-    <div class="slds-text-align_center">
-        <h1 class="headerCarousel"><b>  New to the CSC </b>
-        </h1>
-        <br>
-        <lightning-carousel>
-            <lightning-carousel-image
-            src = "/resource/1737063718000/DiscoverySessionInPerson?"
-            alternative-text = "Click here to learn about the Discovery Session for in person delivery"
-            href = "https://nationaldppcsc.cdc.gov/s/article/in-person-discovery-session-guide">
-        </lightning-carousel-image> 
-            <lightning-carousel-image
-            src = "/resource/1737419531000/DiscoverySession_Videoconferencing?"
-            alternative-text = "Click here to learn about the Discovery Session for videoconferencing"
-            href = "https://nationaldppcsc.cdc.gov/s/article/Session-Zero-Guide-for-Live-Videoconferencing">
-        </lightning-carousel-image>  
-        </lightning-carousel>
+    <section class="whats-new-container" aria-label="What's New Section">
+        <h2 class="section-title">What's New</h2>
+        <div class="title-grid" style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px; justify-content: center;">
+            <div class="tile" style="flex: 1.5; max-width: 80%; font-size: 18px">
+                <b id="new-resources-title">New and Recently Updated Resources</b>
+                <div class="custom-carousel" aria-labelledby="new-resources-title">
+                    <div class="carousel-slides">
+                        <template for:each={computedSlides} for:item="slide">
+                            <div class="carousel-slide" key={slide.id} id={slide.id} aria-hidden={slide.ariaHidden}>
+                                <a href={slide.href} target="_blank">
+                                    <img src={slide.img} alt={slide.alt} title={slide.title} />
+                                </a>
+                            </div>
+                        </template>
+                    </div>
+                    <ul class="carousel-indicators" role="tablist" style="display: flex; gap: 8px; justify-content: center; margin-top: 8px;">
+                        <template for:each={computedSlides} for:item="slide" for:index="idx">
+                            <li role="presentation" key={slide.id}>
+                            <button
+                                role="tab"
+                                aria-selected={slide.isActive}
+                                aria-controls={slide.id}
+                                id={slide.indicatorId}
+                                tabindex={slide.tabIndex}
+                                aria-label={slide.indicatorLabel}
+                                data-index={idx}
+                                onclick={goToSlide}>
+                            </button>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+            <div class="tile" style="flex: 1; max-width: 48%;">
+                <c-csc-upcoming-events show-search-bar="false" show-next-upcoming-only="true"></c-csc-upcoming-events>
+            </div>
         </div>
-        </lightning-card>
-    </div>
+    </section>
 </template>
