@@ -5,8 +5,8 @@
     }
     
     .custom-button {
-    background-color: #14616e;
-    border: 2px solid #14616e; /* Salesforce blue */
+    background: linear-gradient(to right, #0057B7, #0081a1);
+    border: 2px; /* Salesforce blue */
     color: rgb(255, 255, 255);
     padding: 0px 24px;
     font-size: 14px;
@@ -19,12 +19,14 @@
     white-space: nowrap;
     cursor: pointer;
     margin-botton: 16px;
+    --marker: "mixin: focus-indicator";
     }
 
     .custom-button:last-child{
         margin-button: 0;
     }
     .custom-button:hover{
-        background-color: #14616e;
+      background :linear-gradient(90deg, #0081a1 0%, #0057B7 100%);
+         --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
         color:white;
     }
