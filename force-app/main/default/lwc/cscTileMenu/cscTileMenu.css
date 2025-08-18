@@ -87,17 +87,3 @@ a:hover{
   Border: 1px solid gray;
 }
 
-/*@media (max-width: 600px) {
-    .slds-grid {
-        flex-direction: column !important;
-    }
-    .slds-col,
-    .resource-block {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box;
-    }
-    .resource-block {
-        margin: 10px 0;
-    }
-}*/
