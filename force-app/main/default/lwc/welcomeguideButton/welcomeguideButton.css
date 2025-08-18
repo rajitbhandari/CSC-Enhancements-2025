@@ -1,0 +1,21 @@
+.button-container {
+display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left; 
+    margin-top: 20px;
+    }
+    .custom-button {
+        background: linear-gradient(to right, #0057B7, #0081a1);
+         color: #ffffff;
+         padding: 8px 12px;
+         border: none;
+         border-radius: 25px;
+         font-size: 13px;
+         margin-left: 0;
+    }
+    .custom-button:hover{
+      background :linear-gradient(90deg, #0081a1 0%, #0057B7 100%);
+         --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+        color:white;
+    }

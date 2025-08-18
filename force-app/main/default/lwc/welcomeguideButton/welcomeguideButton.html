@@ -1,0 +1,45 @@
+<template>
+    <div class="button-container" style="display: flex; flex-direction: row; gap: 0.5rem; align-items: center; width: 100%;">
+        <button class="custom-button" style="flex: 1 1 50%; max-width: 50%;" onclick={handleNavigation}>
+            Explore the Welcome Guide
+        </button>
+        <button class="custom-button" style="flex: 1 1 50%; max-width: 50%;" onclick={toggleBox}>
+            Sign Up for CSC Emails
+        </button>
+    </div>
+    <!-- modal-popup start -->
+    <template if:true={showBox}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <b> <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Get the Latest Updates</h2></b>
+                </header>
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p>
+                        <b>To sign up for CSC emails:</b><br></br>Click on the subscribe button below -->Enter your Email Address and click “Register”-->To complete your subscription sign-up, please check your email inbox for a confirmation request. Click the link in the email and then follow the instructions to accept your pending subscription for “The National Diabetes Prevention Program Customer Service Center”.
+                    </br><br><button class="custom-button" onclick={handleSubscribeClick}>
+                            Subscribe
+                        </button></br>
+                        <br>
+                        <b>To manage your existing subscriptions, click on the Manage Subscriptions button below:</b></br></br>
+                    <button class="custom-button" onclick={handlemanageSubscribeClick}>
+                        Manage Subscriptions
+                        </button>
+                    <br/>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <!-- modal-popup ends -->
+</template>
