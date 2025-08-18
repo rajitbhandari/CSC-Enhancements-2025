@@ -17,7 +17,7 @@
                                 <strong>HAVE QUESTIONS?</strong>
                                 <div style="display: flex;flex-wrap: wrap;margin-right: -15px;">
                     <div class="row mt-2">
-                        <div class="col-1"><img src="{!$Resource.CDC_Icon_Desktop}" alt="Visit CDC INFO" style="max-height: 25.5px; max-width: 25.5px;"/></div>
+                        <div class="col-1"><img src="{!$Resource.cdc_footer_destop_new}" alt="Visit CDC INFO" style="max-height: 25.5px; max-width: 25.5px;"/></div>
                         <div class="col">
                             <span class="pl-1"><a href="https://www.cdc.gov/cdc-info/index.html">Visit CDC-INFO</a></span>
                         </div>
@@ -25,7 +25,7 @@
                                 </div>
                                 <div style="display: flex;flex-wrap: wrap;margin-right: -15px;">
                     <div class="row mt-2">
-                        <div class="col-1"><img src="{!$Resource.Cdc_footer_Phone}" alt="Call 800-232-4636" style="max-height: 25.5px; max-width: 25.5px;"/></div>
+                        <div class="col-1"><img src="{!$Resource.cdc_footer_phone_new}" alt="Call 800-232-4636" style="max-height: 25.5px; max-width: 25.5px;"/></div>
                         <div class="col">
                             <span class="pl-1" itemprop="telephone">Call 800-232-4636</span>
                         </div>
