@@ -11,8 +11,11 @@
                 <div class="">
                     <header role="banner" aria-label="Header" class="pt-2 pb-2">
                         <div class="row">
-                            <div class="col cdc-logo">
+                            <div class="col cdc-logo" style="display: flex; align-items: center;">
                                 <c:cdc_Header_Salesforce/>
+                            </div>
+                            <div class="col" style="display: flex; align-items: center; justify-content: flex-end; padding-right: 0; margin-right: 0;">
+                                <img src="{!$Resource.ndppLogo}" alt="NDPP Logo" style="height:60px; margin-right: 0;" />
                             </div>
                         </div>
                     </header>

@@ -4,7 +4,7 @@
     font-weight: 300;
 }
 .hyperlinkStyle:hover{
-    color: rgb(46, 125, 143);
+    color: rgb(13, 106, 153);
     text-decoration: none !important; 
     font-weight: 300;
 }
@@ -16,20 +16,40 @@ a:hover{
 }
 .KeyResources{
     font-family: "Open Sans", sans-serif;
-    background-color: rgb(240,240,240); 
+    background-color: rgb(255, 255, 255); 
     padding: 20px 0px;
 }
 .headerStyle{
     font-weight: 1000; 
-    text-align:center; 
+    /*text-align:center;*/ 
+    text-align: left; /* Changed from center to left */
     font-size: 15pt; 
-    color: rgb(0, 134, 75);
+    /*color: rgb(0, 134, 75);*/
+    color: rgb(10, 10, 10); /* Changed to blue */
 }
 .imgStyle{
-    padding-bottom: 4px; 
+    padding-bottom: 1px; 
     width: 30px;
+    margin-right: 2%;
 }
 .contentStyle{
-    padding-left:5px;
+    padding-left:1px;
     font-weight:600;
+}
+.grayText {
+    color: #7f8080;
+}
+.resource-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 15px 8px rgba(69, 76, 83, 0.08);
+  padding: 20px 16px;
+  margin: 16px 0;
+  min-height: 145px;
+  transition: box-shadow 0.2s;
+  text-decoration: none !important;
+  Border: 1px solid gray;
 }
