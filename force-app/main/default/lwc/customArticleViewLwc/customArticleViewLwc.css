@@ -32,7 +32,7 @@
     min-width: 120px;
 }
 .my-close-btn {
-    background-color: #14616e;
+    background-color: #0057b7;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -40,5 +40,5 @@
     font-size: 13px;
 }
 .my-close-btn:hover {
-    background-color: #14616e;
+    background-color: #0057b7;
 }
