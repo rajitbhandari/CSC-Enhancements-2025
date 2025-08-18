@@ -1,0 +1,9 @@
+<template>
+    <div class="banner" style={computedStyle}>
+        <h2>{topicName}</h2>
+        <br />
+        <template if:true={topicDescription}>
+            <div class="topic-description" style="font-weight: normal; font-size: calc(1em - 2px);">{topicDescription}</div>
+        </template>
+    </div>
+</template>

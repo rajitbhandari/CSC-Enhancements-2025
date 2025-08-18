@@ -1,0 +1,145 @@
+.activity-container {
+    font-family: 'Arial', sans-serif;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    /*max-width: 500px;*/
+    margin-left: 0;
+    margin-right: auto;
+}
+
+h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+input[type="text"] {
+    width: 260%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}
+
+.case-entry {
+    background-color: white;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.case-entry span {
+    display: inline-block;
+    /*font-weight: bold;*/    
+    margin-right: 1rem;
+    font-size: 1rem;
+}
+
+.buttons {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.buttons button {
+    padding: 0.5rem 1rem;
+    border: 1px ;
+    border-radius: 18px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: linear-gradient(to right, #0057B7, #0081a1);
+}
+
+.buttons button:hover {
+
+    color: white;
+    background :linear-gradient(90deg, #0081a1 0%, #0057B7 100%);
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    z-index: 1001;
+    min-width: 320px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+}
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-title-centered {
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-size: 1.0rem; /* Increase this value as needed */
+
+}
+.close-btn {
+    background: linear-gradient(to right, #0057B7, #0081a1);
+    color: #fff;
+    border: none;
+    border-radius: 18px;
+    padding: 8px 20px;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    transition: background 0.2s;
+}
+.close-btn:hover {
+    background :linear-gradient(90deg, #0081a1 0%, #0057B7 100%);
+}
+.pagination button {
+    padding: 0.5rem 1rem;
+    border: 1px;
+    border-radius: 18px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+   background: linear-gradient(to right, #0057B7, #0081a1);
+}
+
+.pagination button:hover {
+    color: white;
+    background :linear-gradient(90deg, #0081a1 0%, #0057B7 100%);
+}
+.new-message-banner {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(90deg, #FBF0E8 0%, #FBF0E8 100%);
+    color: #222;
+    padding: 4px 16px;
+    border-radius: 16px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(255, 174, 51, 0.15);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.status-open {
+    color: green;
+    font-weight: bold;
+}
+.status-closed {
+    color: red;
+    font-weight: bold;
+}

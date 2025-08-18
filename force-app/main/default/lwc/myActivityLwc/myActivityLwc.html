@@ -1,0 +1,59 @@
+<template>
+    <div class="activity-container">
+        <div class="cases-section">
+            <h2>Cases</h2>
+            <div style="display: flex; align-items: center; gap: 1rem; justify-content: space-between;">
+                <input type="text" placeholder="Search by keywords..." oninput={handleSearch} />
+                <!-- SLDS Toggle Switch right aligned -->
+                <label class="slds-checkbox_toggle slds-grid" style="margin-left: auto;">
+                    <span class="slds-form-element__label slds-m-right_x-small" style="font-size:0.95rem;">View New Messages Only</span>
+                    <input type="checkbox" onchange={handleToggle} />
+                    <span id="toggle-desc" class="slds-checkbox_faux_container" aria-live="assertive">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-checkbox_on">On</span>
+                        <span class="slds-checkbox_off">Off</span>
+                    </span>
+                </label>
+            </div>
+
+            <template if:true={pagedCases.length}>
+                <template for:each={pagedCases} for:item="wrapper">
+                    <div key={wrapper.caseRecord.Id} class="case-entry" style="position: relative;">
+                        <span><strong>Case Number:</strong> {wrapper.caseRecord.CaseNumber}</span>
+                        <br />
+                        <span>
+                            <strong>Status:</strong>
+                                <span class={wrapper.statusClass}>
+                                    {wrapper.caseRecord.Status}
+                                </span>
+                        </span>
+                        <br />
+                        <span><strong>Subject:</strong> {wrapper.caseRecord.Subject}</span>
+                        <br />
+                        <span><strong>Description:</strong> {wrapper.caseRecord.Description}</span>
+                        <br />
+                        <div class="buttons">
+                            <button onclick={updateRequest} data-id={wrapper.caseRecord.Id}>View Details</button>
+                        </div>
+                        <template if:true={wrapper.comments.length}>
+                            <div class="new-message-banner">
+                                <span>🟢 New Message</span>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <div class="pagination" style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px;">
+                    <template if:true={hasPrev}>
+                        <button onclick={handlePrev}>Previous</button>
+                    </template>
+                    <template if:true={hasNext}>
+                        <button onclick={handleNext}>Next</button>
+                    </template>
+                </div>
+            </template>
+            <template if:false={pagedCases.length}>
+                <div class="no-cases-message">No case records.</div>
+            </template>
+        </div>
+    </div>
+</template>

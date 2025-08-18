@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+        <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="backgroundColor" type="String" label="Banner Background Color" description="Hex or name (e.g. #0070d2 or red)" default="#f0f0f0"/>
+            <property name="textColor" type="String" label="Banner Text Color" description="Hex or name (e.g. #181818 or black)" default="#181818"/>
+            <property name="fontSize" type="String" label="Font Size" description="e.g. 18px or 1.5rem" default="16px"/>
+            <property name="height" type="String" label="Banner Height" description="e.g. 60px or 4rem (optional)"/>
+            <property name="recordId" type="String" label="Record Id" description="Record Id to pass to the component (required)" required="true"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
