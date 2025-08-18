@@ -21,7 +21,7 @@
     height:154px;
   }
   .fontStyle{
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Nunito', sans-serif;
   }
   .tileButton:hover{
     background-color:#0D47A1; /*rgb(2, 73, 45);  */
@@ -70,7 +70,7 @@ a:hover{
     font-weight:600;
 }
 .grayText {
-    color: #999999;
+    color: #7f8080;
 }
 .resource-block {
   display: flex;
@@ -78,10 +78,26 @@ a:hover{
   align-items: flex-start;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(69, 76, 83, 0.08);
+  box-shadow: 0 15px 8px rgba(69, 76, 83, 0.08);
   padding: 20px 16px;
   margin: 16px 0;
-  min-height: 110px;
+  min-height: 145px;
   transition: box-shadow 0.2s;
   text-decoration: none !important;
+  Border: 1px solid gray;
 }
+
+/*@media (max-width: 600px) {
+    .slds-grid {
+        flex-direction: column !important;
+    }
+    .slds-col,
+    .resource-block {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+    .resource-block {
+        margin: 10px 0;
+    }
+}*/

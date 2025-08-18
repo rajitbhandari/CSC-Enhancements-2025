@@ -1,4 +1,5 @@
 import { LightningElement } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 
 export default class CscTileMenu extends LightningElement  {
     cscButton(event){
