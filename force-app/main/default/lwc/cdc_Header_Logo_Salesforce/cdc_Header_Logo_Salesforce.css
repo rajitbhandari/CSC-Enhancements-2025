@@ -1,0 +1,12 @@
+.header-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: white;
+    transition: background-color 0.3s;
+}
+
+.header-logo-wrapper:hover {
+    background-color: #e3f2fd;;
+}
