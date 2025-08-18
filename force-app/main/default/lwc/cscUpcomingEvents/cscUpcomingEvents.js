@@ -15,7 +15,6 @@ export default class CscUpcomingEvents extends LightningElement {
     @track selectedEvent = {};
 
     connectedCallback() {
-        // If showNextUpcomingOnly is true, always hide the search bar
         if (this.showNextUpcomingOnly) {
             this.showSearchBar = false;
         }
@@ -29,60 +28,83 @@ export default class CscUpcomingEvents extends LightningElement {
         const end = new Date(today);
         start.setDate(start.getDate() - Number(this.noOfWeeksBefore) * 7);
         end.setDate(end.getDate() + Number(this.noOfWeeksAfter) * 7);
-        // Always set time to 00:00:00 for start and 23:59:59 for end to cover full days
         start.setHours(0,0,0,0);
         end.setHours(23,59,59,999);
         this.startDate = start.toISOString();
         this.endDate = end.toISOString();
+        // Debug statements
+        // eslint-disable-next-line no-console
+        console.log('DEBUG: startDate (range):', this.startDate);
+        // eslint-disable-next-line no-console
+        console.log('DEBUG: endDate (range):', this.endDate);
     }
-
-    fetchEvents() {
-        const subjectParam = this.subjectFilter && this.subjectFilter.trim() !== '' ? this.subjectFilter : undefined;
-        console.log('DEBUG: Calling getUpcomingEvents with:', {
-            startDate: this.startDate,
-            endDate: this.endDate,
-            subject: subjectParam,
-            showNextUpcomingOnly: this.showNextUpcomingOnly
-        });
-        getUpcomingEvents({
-            startDate: this.startDate,
-            endDate: this.endDate,
-            subject: subjectParam,
-            showNextUpcomingOnly: this.showNextUpcomingOnly
-        })
-            .then(result => {
-                let events = result.map(e => {
-                    let dateOnly = '';
-                    let timeOnly = '';
-                    if (e.StartDateTime) {
-                        const dt = new Date(e.StartDateTime);
-                        // Format as MM/DD/YYYY
-                        dateOnly = dt.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
-                        // Format as hh:mm AM/PM
-                        timeOnly = dt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-                    }
-                    return {
-                        Id: e.Id,
-                        Subject: e.Subject,
-                        StartDateTime: e.StartDateTime ? new Date(e.StartDateTime).toLocaleString() : '',
-                        EndDateTime: e.EndDateTime ? new Date(e.EndDateTime).toLocaleString() : '',
-                        StartDateOnly: dateOnly,
-                        StartTimeOnly: timeOnly,
-                        Description: e.Description || ''
-                    };
-                });
-                this.events = events;
-                this.error = undefined;
-                // Fire event to parent with the number of events
-                this.dispatchEvent(new CustomEvent('upcomingeventsloaded', { detail: this.events.length, bubbles: true, composed: true }));
-            })
-            .catch(error => {
-                this.error = (error && error.body && error.body.message) ? error.body.message : error.message || error;
-                this.events = [];
-                // Fire event to parent with 0 events
-                this.dispatchEvent(new CustomEvent('upcomingeventsloaded', { detail: 0, bubbles: true, composed: true }));
+fetchEvents() {
+    const subjectParam = this.subjectFilter && this.subjectFilter.trim() !== '' ? this.subjectFilter : undefined;
+    // Debug: log parameters being sent to Apex
+    // eslint-disable-next-line no-console
+    console.log('DEBUG: Calling getUpcomingEvents with:', {
+        startDate: this.startDate,
+        endDate: this.endDate,
+        subject: subjectParam,
+        showNextUpcomingOnly: this.showNextUpcomingOnly
+    });
+    getUpcomingEvents({
+        startDate: this.startDate,
+        endDate: this.endDate,
+        subject: subjectParam,
+        showNextUpcomingOnly: this.showNextUpcomingOnly
+    })
+        .then(result => {
+            let events = result.map(e => {
+                let dateOnly = '';
+                let timeOnly = '';
+                let startDay = '';
+                let startMonth = '';
+                if (e.StartDateTime) {
+                    const dt = new Date(e.StartDateTime);
+                    dateOnly = dt.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+                    timeOnly = dt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+                    startDay = dt.getDate();
+                    startMonth = dt.toLocaleString('default', { month: 'short' });
+                }
+                // Truncate description after 4 words
+                let description = e.Description || '';
+                let truncatedDescription = description.split(' ').slice(0, 4).join(' ');
+                if (description.split(' ').length > 4) {
+                    truncatedDescription += '...';
+                }
+                // Truncate subject after 4 words
+                let subject = e.Subject || '';
+                let truncatedSubject = subject.split(' ').slice(0, 3).join(' ');
+                if (subject.split(' ').length > 3) {
+                    truncatedSubject += '...';
+                }
+                return {
+                    Id: e.Id,
+                    Subject: e.Subject,
+                    TruncatedSubject: truncatedSubject,
+                    StartDateTime: e.StartDateTime ? new Date(e.StartDateTime).toLocaleString() : '',
+                    EndDateTime: e.EndDateTime ? new Date(e.EndDateTime).toLocaleString() : '',
+                    StartDateOnly: dateOnly,
+                    StartTimeOnly: timeOnly,
+                    StartDay: startDay,
+                    StartMonth: startMonth,
+                    Description: e.Description || '',
+                    TruncatedDescription: truncatedDescription,
+                    EventType: e.Type || ''
+                };
             });
-    }
+            this.events = events;
+            this.error = undefined;
+            // Fire event to parent with the number of events
+            this.dispatchEvent(new CustomEvent('upcomingeventsloaded', { detail: this.events.length, bubbles: true, composed: true }));
+        })
+        .catch(error => {
+            this.error = (error && error.body && error.body.message) ? error.body.message : error.message || error;
+            this.events = [];
+            this.dispatchEvent(new CustomEvent('upcomingeventsloaded', { detail: 0, bubbles: true, composed: true }));
+        });
+}
 
     handleStartDateChange(event) {
         const val = event.target.value;

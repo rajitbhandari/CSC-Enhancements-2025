@@ -1,6 +1,6 @@
 <template>
-    <lightning-card class="transparent-card">
-        <h2 class="upcoming-events-title">Upcoming Events</h2>
+  <div class="event-wrapper">
+       <h2 class="upcoming-events-title">Upcoming Events</h2>
         <template if:true={showSearchBar}>
             <div class="slds-p-horizontal_medium slds-p-vertical_small">
                 <lightning-input type="text" label="Search event" onchange={handleSubjectChange}></lightning-input>
@@ -9,25 +9,29 @@
         <template if:true={error}>
             <div class="slds-text-color_error">{error}</div>
         </template>
-        <template if:true={events.length}>
-            <ul class="slds-p-horizontal_medium upcoming-events-list">
-                <template for:each={events} for:item="event">
-                    <li key={event.Id} class="slds-m-vertical_small slds-p-top_medium slds-p-bottom_medium slds-border_bottom slds-hyphenate" style="background: #fff; border-radius: 6px; box-shadow: 0 2px 4px 0 rgba(0,0,0,0.04); cursor:pointer;" onclick={handleEventClick} data-id={event.Id}>
-                        <span class="event-subject">{event.Subject}</span>
-                        <span class="event-date-bold slds-text-body_small slds-hyphenate">{event.StartDateOnly}</span>
-                        <span class="event-time-light slds-text-body_small slds-hyphenate">{event.StartTimeOnly} EST</span><br/>
-                        <template if:true={event.Description}>
-                            <span class="event-description slds-text-body_small slds-hyphenate">{event.Description}</span>
-                        </template>
-                    </li>
-                </template>
-            </ul>
-        </template>
-        <template if:false={events.length}>
-            <p class="slds-p-horizontal_medium">No upcoming events found.</p>
-        </template>
-        <!-- Modal for event details -->
-        <template if:true={showModal}>
+    <template if:true={events.length}>
+     <div class="upcoming-events-list" tabindex="0">
+      <template for:each={events} for:item="event">
+        <div class="event-card" key={event.Id} onclick={handleEventClick} data-id={event.Id} style="cursor:pointer; margin-bottom: 25px;">
+          <div class="event-date">
+            <div class="day">{event.StartDay}</div>
+            <div class="month">{event.StartMonth}</div>
+          </div>
+          <div class="event-details">
+           <div class="event-title">{event.TruncatedSubject}</div>
+            <div class="event-time">{event.EventType} • {event.StartTimeOnly} EST</div>
+            <div class="event-description">
+              {event.TruncatedDescription}
+            </div>
+          </div>
+        </div>
+      </template>
+      </div>
+    </template>
+    <template if:false={events.length}>
+      <p class="slds-p-horizontal_medium">No upcoming events found.</p>
+    </template>
+    <template if:true={showModal}>
             <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container">
                     <header class="slds-modal__header">
@@ -47,5 +51,5 @@
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
         </template>
-    </lightning-card>
+  </div>
 </template>

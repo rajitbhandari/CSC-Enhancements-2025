@@ -8,7 +8,7 @@ public without sharing class CSC_UpcomingEventController {
         DateTime endDt;
         if (showNextUpcomingOnly == true) {
             startDt = now;
-            endDt = now.addDays(7); // Only 1 week ahead
+            endDt = now.addDays(30); // Only 1 week ahead
         } else {
             try {
                 // Fix: Replace 'T' with ' ' and remove 'Z' for DateTime.valueOf compatibility
@@ -36,10 +36,15 @@ public without sharing class CSC_UpcomingEventController {
                 events = (List<Event>)searchResults[0];
             }
         } else {
-            events = [SELECT Id, Subject, StartDateTime, EndDateTime, Description, OwnerId FROM Event WHERE DAY_ONLY(StartDateTime) >= :startDt.date() AND DAY_ONLY(StartDateTime) <= :endDt.date() ORDER BY StartDateTime ASC];
+            events = [SELECT Id, Subject, StartDateTime, EndDateTime, Description, OwnerId,Type FROM Event WHERE DAY_ONLY(StartDateTime) >= :startDt.date() AND DAY_ONLY(StartDateTime) <= :endDt.date() ORDER BY StartDateTime ASC];
         }
         if (showNextUpcomingOnly == true && events.size() > 0) {
-            return new List<Event>{ events[0] };
+            Integer count = Math.min(2, events.size());
+            List<Event> result = new List<Event>();
+            for (Integer i = 0; i < count; i++) {
+                result.add(events[i]);
+            }
+            return result;
         }
         return events;
     }
