@@ -53,7 +53,10 @@
             <div id="sfdc_forgot" class="sfdc">
                 <span><a href="{!if(v.communityForgotPasswordUrl == null, v.forgotPasswordUrl, v.communityForgotPasswordUrl)}">{!v.forgotPasswordLabel}</a></span>
                 <aura:renderIf isTrue="{!v.isSelfRegistrationEnabled}">
-                    <span style="float:right" ><a href="{!if(v.communitySelfRegisterUrl == null, v.selfRegisterUrl, v.communitySelfRegisterUrl)}">{!v.selfRegisterLabel}</a></span>
+                    <!--<span style="float:right" ><a href="{!if(v.communitySelfRegisterUrl == null, v.selfRegisterUrl, v.communitySelfRegisterUrl)}">{!v.selfRegisterLabel}</a></span>-->
+                    <span style="float:right" >
+                        <a href="/s/registeration2">{!v.selfRegisterLabel}</a>
+                    </span>
                 </aura:renderIf>
             </div>
         </aura:renderIf>

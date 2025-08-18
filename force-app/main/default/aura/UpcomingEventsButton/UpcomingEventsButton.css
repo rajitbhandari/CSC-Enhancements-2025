@@ -1,5 +1,5 @@
 .THIS .askCommunityBtn:hover {
-background-color: #14616e !important;
+background :linear-gradient(90deg, #0081a1 0%, #0057B7 100%);
 color: white !important;
-border-color: #14616e !important;
+border-color: #0057b7 !important;
 }

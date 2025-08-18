@@ -138,6 +138,13 @@
                 </div>
             </div>
         </aura:if>
+       <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-1">
+                <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr> {!v.ZipCodeLabel}</b></label> 
+            <div class="slds-form-element__control">
+                <ui:inputText maxlength="5" value="{!v.userObject.Zip_Code__c}" disabled="{!v.orgfieldVisiblility}"  required="" aura:id="ZipCode" class="slds-input"  keyup="{!c.onKeyUp}"/>
+            </div>
+        </div>
 
         <div class="slds-form-element">
             <label class="slds-form-element__label" for="text-input-id-1">
@@ -177,13 +184,7 @@
                 </aura:if>
             </div> 
         </aura:if>
-        <div class="slds-form-element">
-            <label class="slds-form-element__label" for="text-input-id-1">
-                <b id="fontcolor"><abbr class="slds-required" title="required">*</abbr> {!v.ZipCodeLabel}</b></label> 
-            <div class="slds-form-element__control">
-                <ui:inputText maxlength="5" value="{!v.userObject.Zip_Code__c}" disabled="{!v.orgfieldVisiblility}"  required="" aura:id="ZipCode" class="slds-input"  keyup="{!c.onKeyUp}"/>
-            </div>
-        </div>
+
         <lightning:input type="checkbox" 
         label="Check the box to sign-up for our Mailing List to get access to new resources, program updates, and more from the National Diabetes Prevention Program" 
         name="inputcheckbox"
